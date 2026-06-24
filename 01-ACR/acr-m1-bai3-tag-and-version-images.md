@@ -410,6 +410,22 @@ Ghi rõ trong README hoặc wiki:
 
 ---
 
+## ACR vs Docker — Điểm khác biệt về tagging
+
+Về **khái niệm** tag, ACR không thay đổi gì so với Docker — cơ chế stable/unique tag, vấn đề của `latest`, semantic versioning đều hoạt động y hệt. Điểm khác biệt thực sự là những tính năng **lifecycle management** mà ACR bổ sung xung quanh:
+
+| Feature | ACR | Docker Hub / local Docker |
+|---|---|---|
+| **Lock image** (`--write-enabled false`) | Có — ngăn xoá/ghi đè kể cả admin | Không có |
+| **`acr purge`** | Tool cleanup tích hợp sẵn | Phải tự viết script |
+| **Scheduled cleanup task** | Có (`--schedule` cron trên ACR Tasks) | Không có built-in |
+| **Retention policy** | Có (Premium tier) | Không có |
+| **`{{.Run.ID}}`** | Biến tự động tạo unique identifier mỗi build | Không có |
+
+**Nếu bạn đã biết Docker tagging:** Phần lý thuyết đầu bài (stable tag, unique tag, SemVer, vấn đề `latest`) là ôn lại — không có gì mới. Phần thực sự mới là **lock image** và **lifecycle management** (purge, scheduled task, retention policy).
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Stable tag** bị ghi đè khi push image mới cùng tag → dùng cho base image và dev environment

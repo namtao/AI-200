@@ -161,6 +161,23 @@ Sau khi cập nhật registry config, deploy revision mới và verify revision 
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Bài này giống hệt ACR bài 1 M2 về concept — ACA cần credential để pull image từ private registry, và managed identity thay thế `docker login` trên cloud.
+
+### So sánh
+
+| | Docker local | App Service | ACA |
+|---|---|---|---|
+| Xác thực với registry | `docker login registry.io` | Managed identity hoặc admin creds | Managed identity hoặc username/password |
+| Lưu credential | Trong `~/.docker/config.json` | App config (encrypted) | Trong container app config |
+| Không cần credential | Không | ✅ managed identity với ACR | ✅ `--identity system` |
+| Xác thực với non-ACR registry | `docker login` | username/password | `registry set --username --password` |
+
+**Điểm giống App Service hoàn toàn:** Cùng khái niệm, cùng lệnh pattern, chỉ khác CLI prefix (`az webapp` vs `az containerapp`). Managed identity → `AcrPull` role. Không có credential nào cần lưu hay rotate.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Registry config **tách biệt** với app config — image pull failure trông như auth error trong log

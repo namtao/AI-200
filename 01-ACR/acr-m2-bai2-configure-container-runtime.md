@@ -285,6 +285,33 @@ az webapp config set \
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Bài này giải quyết những gì Docker *không làm* khi bạn giao container cho một managed platform.
+
+Khi chạy Docker thuần, bạn kiểm soát mọi thứ qua `docker run`: port mapping, volume, startup command, health check — tất cả khai báo thẳng tại dòng lệnh. Khi chạy trên App Service (PaaS), bạn không có `docker run`. Thay vào đó, App Service cần bạn *khai báo ý định* qua settings, rồi nó tự orchestrate.
+
+### So sánh Docker thuần vs App Service
+
+| Tính năng | Docker thuần | App Service |
+|---|---|---|
+| Override startup command | `docker run <image> <cmd>` | `az webapp config set --startup-file "..."` |
+| Khai báo port | `-p 8080:3000` (map 2 chiều) | `WEBSITES_PORT=3000` (chỉ nói port container) |
+| Persistent storage | `-v /host/path:/container/path` | `WEBSITES_ENABLE_APP_SERVICE_STORAGE=true` → mount sẵn `/home` |
+| App "ngủ" khi idle | Không xảy ra — bạn kiểm soát host | Xảy ra sau 20 phút → cần `--always-on true` |
+| Health check | `HEALTHCHECK` trong Dockerfile (chạy bên trong container) | App Service probe HTTP từ ngoài vào mỗi phút |
+| TLS/HTTPS | Tự cấu hình reverse proxy + cert | App Service terminate TLS trước — container chỉ nhận HTTP |
+
+**3 điểm khác biệt quan trọng nhất so với Docker:**
+
+1. **Port khai báo 1 chiều:** Docker `-p 8080:3000` map cả host lẫn container. App Service chỉ cần bạn khai báo container port (`WEBSITES_PORT`) — phía ngoài (80/443) do nó lo.
+
+2. **Cold start là vấn đề PaaS:** Docker chạy trên server bạn kiểm soát → không bao giờ "ngủ". App Service dùng chung infrastructure → tiết kiệm tài nguyên bằng cách idle app ít traffic → sinh ra bài toán cold start.
+
+3. **Health check từ ngoài vào:** Docker `HEALTHCHECK` chạy *bên trong* container. App Service probe HTTP endpoint *từ ngoài* → tự remove instance khỏi load balancer nếu fail.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Startup command override **`CMD`** trong Dockerfile, không override `ENTRYPOINT`

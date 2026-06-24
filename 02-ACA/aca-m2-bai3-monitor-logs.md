@@ -156,6 +156,25 @@ ContainerAppConsoleLogs_CL
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** ACA không có shell access vào container → log là cửa sổ duy nhất vào runtime; structured logging không còn là "best practice" mà là yêu cầu bắt buộc.
+
+### So sánh toolchain
+
+| | Docker | App Service | ACA |
+|---|---|---|---|
+| Xem log container | `docker logs` | `az webapp log tail` | `az containerapp logs show` |
+| Shell vào container | `docker exec -it bash` (luôn có) | SSH (cần cấu hình) | ❌ Không có |
+| Log dài hạn | Docker logging driver (ELK, Splunk) | Log Analytics | Log Analytics + KQL |
+| Trace qua nhiều service | Phải tự setup | Không có built-in | Tất cả app trong environment đổ về cùng workspace |
+
+**Điểm khác biệt cốt lõi với App Service:** App Service có Kudu = can browse env var, file system, SSH. ACA không có. Log là thứ duy nhất bạn có → thiết kế log tốt từ đầu quan trọng hơn nhiều so với App Service.
+
+**Hệ quả thực tế:** App log cần include correlation ID + revision ID + model version. Không có những field này, khi incident xảy ra bạn không có cách narrow scope.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Log là **tín hiệu diagnostic chính** trong ACA — không có shell access vào container

@@ -313,6 +313,34 @@ Chỉ expose endpoint này trong development/staging — không expose trong pro
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Bài này hiện thực hóa nguyên tắc "build once, run anywhere" — cùng một image, thay đổi hành vi qua environment variable thay vì rebuild.
+
+Với Docker thuần, bạn inject config qua `docker run -e KEY=VALUE` hoặc `--env-file .env`. App Service làm điều tương tự, nhưng "env file" được quản lý tập trung qua Portal/CLI, mã hóa tự động, và có thêm 3 tính năng vượt trội mà Docker không có sẵn.
+
+### So sánh với Docker và các giải pháp khác
+
+| Tính năng | Docker thuần | Docker Compose | Kubernetes | App Service |
+|---|---|---|---|---|
+| Inject config | `docker run -e KEY=VALUE` | `environment:` trong compose.yml | ConfigMap | App settings |
+| Quản lý nhiều config | `.env` file thủ công | `.env` + profiles | ConfigMap manifest | Bulk edit JSON |
+| Secret | `.env` file (không an toàn) | Docker secrets | Kubernetes Secret | Key Vault references |
+| Config theo môi trường | Nhiều `.env` file | Compose profiles / override file | Namespace + Helm values | Slot settings |
+| Audit trail secret | Không có | Không có | Hạn chế | Azure Key Vault full audit |
+
+**Insight quan trọng:** App settings KHÔNG phải file `.env` baked trong image. Chúng được inject lúc runtime khi container start — image không chứa config, config đến từ ngoài. Đây là lý do bạn có thể dùng cùng image `docprocessor:v1` cho cả staging lẫn production với config khác nhau.
+
+**3 điểm khác biệt nổi bật so với Docker:**
+
+1. **Slot settings — không có tương đương trong Docker:** Docker không có khái niệm "deployment slot swap". Slot settings giải quyết vấn đề: khi swap staging↔production, config nào nên swap theo code và config nào nên ở lại với environment. Gần nhất là Docker Compose profiles, nhưng không tự động xử lý khi swap.
+
+2. **Key Vault references — secret không bao giờ chạm App Service:** Với Docker thuần, secret ở `.env` file → tồn tại trên disk. Với App Service + Key Vault references, App Service chỉ lưu *URL trỏ đến secret*, giá trị thực nằm trong Key Vault và chỉ được fetch lúc container start. Tương đương Kubernetes External Secrets hoặc HashiCorp Vault agent injection.
+
+3. **Connection strings với prefix tự động — legacy .NET feature:** Bài học thực tế là *không cần dùng* nếu bạn làm Python/Node.js. Đây là legacy behavior từ thời .NET Framework, không phải best practice mới.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] App settings được inject vào container dưới dạng **environment variable**

@@ -264,6 +264,24 @@ Với team deploy nhiều lần một ngày, inactive revision tích lũy nhanh.
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Revision model biến mỗi deployment thành một immutable snapshot có thể rollback, traffic split, và điều tra — thứ mà Docker và App Service không có.
+
+### So sánh: Deploy mới trong Docker vs ACA
+
+| | Docker | App Service | ACA Revision |
+|---|---|---|---|
+| Khi update image | Container cũ bị replace | Deployment history (portal only) | Revision mới tạo, revision cũ còn nguyên |
+| Rollback | Pull image tag cũ + redeploy | Swap deployment slots | Activate lại revision cũ — instant |
+| So sánh config | Không có | Khó | `revision show` cả hai revision rồi so sánh |
+| Traffic split (canary) | Cần load balancer riêng | Deployment slots (2 slots) | Traffic weights trên nhiều revision |
+| Evidence sau incident | Log còn, config mất | Hạn chế | Revision config, log, image reference đều còn |
+
+**Điểm quan trọng nhất:** ACA rollback = activate revision cũ (infrastructure sẵn sàng → gần như instant). App Service rollback = pull image lại (có thể tốn vài phút).
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Tag** = mutable, tiện cho dev · **Digest** = immutable, dùng cho production AI

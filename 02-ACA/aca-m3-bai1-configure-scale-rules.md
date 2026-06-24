@@ -173,6 +173,26 @@ rules:
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** ACA autoscaling là KEDA wrapped trong một API đơn giản hơn — bạn khai báo trigger condition, platform tự scale; App Service không có gì tương đương phía KEDA.
+
+### So sánh với App Service và Kubernetes
+
+| Scale trigger | App Service | Kubernetes HPA | ACA |
+|---|---|---|---|
+| HTTP request | Manual hoặc autoscale rules | ❌ không sẵn | ✅ HTTP scale rule |
+| CPU/Memory | ✅ autoscale | ✅ HPA | ✅ nhưng không scale-to-zero |
+| Queue depth (Service Bus, Storage) | ❌ | ✅ qua KEDA | ✅ event-driven |
+| Custom metrics | ❌ | ✅ custom metrics | ✅ Prometheus |
+| Scale-to-zero | ❌ (chỉ Free/Shared) | ✅ qua KEDA | ✅ HTTP, event-driven |
+
+**Điểm quan trọng nhất:** CPU/Memory scale **không thể scale về 0** — cần ít nhất 1 replica để đo. Chỉ HTTP và event-driven scale mới hỗ trợ scale-to-zero.
+
+**Scale-up ngay, scale-down chờ 5 phút** — pattern này quan trọng khi tính chi phí workload bursty.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Scale definitions gồm 3 phần: **limits**, **rules**, **behavior**

@@ -159,6 +159,26 @@ Deactivate v1
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Single vs Multiple revision mode là lựa chọn giữa "platform tự manage transition" và "bạn kiểm soát traffic split" — tương tự App Service deployment slots nhưng granular hơn nhiều.
+
+### So sánh với App Service deployment slots
+
+| | App Service Slots | ACA Single Mode | ACA Multiple Mode |
+|---|---|---|---|
+| Số "version" active cùng lúc | 2 (prod + staging) | 1 | Nhiều (≤100) |
+| Traffic split | Swap 0%/100% hoặc % routing | Tự động 100% sau health check | Bạn set % thủ công |
+| Direct access URL | Slot URL | Không | Label URL |
+| Canary (5-10%) | Không | Không | ✅ |
+| Auto-cleanup cũ | Không | Tự deactivate revision cũ | Bạn phải dọn, auto-purge sau 100 |
+
+**Label là tính năng không có trong App Service:** Named endpoint trỏ thẳng vào revision cụ thể — cho QA test revision mới mà không ảnh hưởng production traffic. Blue-green deployment = move label (atomic, instant).
+
+**Exam trap quan trọng:** Revision-scope changes (image, env var, scale rules) tạo revision mới. Application-scope changes (secrets, ingress, traffic rules) **không** tạo revision mới.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Revision-scope changes** tạo revision mới (image, scale rules, env vars)

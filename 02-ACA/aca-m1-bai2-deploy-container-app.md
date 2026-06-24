@@ -227,6 +227,25 @@ az containerapp update --name ai-api --resource-group rg-aca-demo \
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Ba cách deploy với trade-off ngược nhau: `up` (nhanh nhất, ít control nhất) → `create` (explicit) → YAML (chậm nhất để setup, nhiều control nhất, duy nhất phù hợp production).
+
+### So sánh với Docker
+
+| | Docker | ACA |
+|---|---|---|
+| Deploy nhanh | `docker run nginx` | `az containerapp up --image nginx` |
+| Deploy tường minh | `docker run -p -e -v nginx` | `az containerapp create` với đầy đủ flags |
+| Deploy từ config file | `docker-compose up` | `az containerapp create --yaml file.yml` |
+| Cập nhật | `docker stop + docker run` new image | `az containerapp update` → tạo revision mới |
+
+**Điểm khác biệt quan trọng với Docker:**
+- `docker run` replace container cũ → không có lịch sử. `containerapp update` tạo **revision mới**, revision cũ vẫn còn → rollback nhanh.
+- Khi dùng `--yaml`, tất cả CLI flag khác **bị bỏ qua** — không có hành vi này trong Docker.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Đăng ký resource providers trước khi dùng ACA: `Microsoft.App` và `Microsoft.OperationalInsights`

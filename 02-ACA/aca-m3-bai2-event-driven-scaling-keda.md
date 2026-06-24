@@ -153,6 +153,25 @@ Cần: 2 msg/s × 10s/msg = 20 concurrent workers
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Event-driven scaling giải quyết bài toán HTTP scaling không giải quyết được — scale dựa trên "work waiting to be done" thay vì "requests happening right now."
+
+### So sánh với App Service và Docker
+
+| | Docker | App Service | ACA Event-driven |
+|---|---|---|---|
+| Scale theo queue depth | ❌ | ❌ | ✅ Service Bus, Storage Queue |
+| Scale theo event lag | ❌ | ❌ | ✅ Event Hubs, Kafka |
+| Scale-to-zero khi queue rỗng | ❌ | ❌ | ✅ |
+| Poll interval | N/A | N/A | 30 giây |
+
+**Mental model:** HTTP scale = "có bao nhiêu người đang dùng ngay bây giờ?". Event-driven scale = "có bao nhiêu việc cần làm trong queue?". Hai câu hỏi khác nhau, hai workload pattern khác nhau.
+
+**Công thức chung:** `desired replicas = queue_depth ÷ messages_per_replica`. Với Event Hubs: max effective replicas = số partition (replica thừa không có partition để read).
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Event-driven scaling dùng KEDA, polling mỗi **30 giây**

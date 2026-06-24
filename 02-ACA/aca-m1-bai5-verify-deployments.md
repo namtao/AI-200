@@ -230,6 +230,26 @@ az containerapp show -n ai-api -g rg-aca-demo \
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** ACA thay thế Kudu (App Service) bằng 4 lệnh CLI có cấu trúc; và thêm hai khái niệm mới — Revision và Replica — không có tương đương trong App Service.
+
+### So sánh với App Service
+
+| Tình huống | App Service | ACA |
+|---|---|---|
+| Xem config + URL | `az webapp show` | `az containerapp show` |
+| Log real-time | `az webapp log tail` | `az containerapp logs show --follow` |
+| Xem deployment version | Deployment history (portal) | `az containerapp revision list` — first-class resource |
+| Xem instance | Portal metrics | `az containerapp replica list` — CLI queryable |
+| Advanced console | Kudu (`<app>.scm.azurewebsites.net`) | ❌ Không có |
+
+**Điểm ACA mạnh hơn App Service:** Revision và Replica là queryable resource với `--query` — có thể script hóa verification trong CI/CD pipeline. App Service không có equivalent CLI-queryable revision model.
+
+**Điểm ACA yếu hơn App Service:** Không có Kudu → không có shell access mặc định. Không thể browse environment variable trong browser.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] ACA có hai loại log: **console logs** (app output) và **system logs** (platform)

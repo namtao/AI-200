@@ -203,6 +203,27 @@ Quyết định trước:
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Environment là "Kubernetes namespace được quản lý" — ranh giới network, observability, và governance cho một nhóm microservice cùng chạy với nhau.
+
+App Service Plan chỉ là **compute tier** (CPU/RAM). ACA Environment là thứ khác hẳn: nó quyết định **ai nói chuyện được với ai** và **log của ai đổ về đâu**.
+
+### So sánh với các giải pháp khác
+
+| Tính năng | App Service Plan | Docker Compose | Kubernetes | ACA Environment |
+|---|---|---|---|---|
+| Internal DNS giữa services | ❌ | ✅ service name | ✅ cluster DNS | ✅ tự động |
+| Scale mỗi service độc lập | ❌ shared plan | ❌ manual | ✅ | ✅ |
+| Log tập trung | ❌ cần cấu hình riêng | ❌ | ❌ cần setup | ✅ tích hợp sẵn |
+| Quản lý infrastructure | Bạn chọn tier | Bạn lo host | Bạn lo k8s cluster | Azure lo |
+
+**Mental model:** Một Environment ≈ một `docker-compose` network scope — services trong cùng network gọi nhau bằng tên, services ngoài network không nhìn thấy nhau. Nhưng trên cloud và có auto-scaling.
+
+**Điểm quan trọng nhất:** Apps ở **khác environment** = không giao tiếp nội bộ được, dù cùng subscription.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Mọi container app đều phải thuộc về một **environment**

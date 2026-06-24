@@ -181,6 +181,28 @@ Sau khi fix → start lại nếu đã stop
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Bài này phân biệt 3 cơ chế "không chạy" có semantics khác nhau — thứ Docker không cần phân biệt vì bạn luôn kiểm soát host.
+
+### So sánh với Docker
+
+| Action | Docker | ACA | Sự khác biệt |
+|---|---|---|---|
+| Dừng container | `docker stop` | `az containerapp stop` | ACA: explicit, không auto-restart |
+| Bắt đầu lại | `docker start` | `az containerapp start` | Tương đương |
+| Restart | `docker restart` | `az containerapp restart` | ACA: restart tất cả replica |
+| "Tự ngủ" khi rảnh | Không có | Scale-to-zero | ACA: auto behavior, tự wake up khi có traffic |
+
+**Insight quan trọng:** Docker chạy trên server bạn kiểm soát → container không bao giờ "tự ngủ". ACA là PaaS shared infrastructure → cần scale-to-zero để tiết kiệm. Nhưng scale-to-zero ≠ stop: scale-to-zero tự wake up, stop thì không.
+
+**Khi nào dùng gì (và không có trong Docker):**
+- Vấn đề ở **một revision cụ thể** → `revision deactivate` (không stop toàn app)
+- Vấn đề ở **toàn bộ app** (upstream outage) → `containerapp stop`
+- Process bị stuck nhưng không biết tại sao → `restart` + xem log ngay
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Scale-to-zero** = auto behavior của scaling engine, app có thể tự scale up khi có traffic

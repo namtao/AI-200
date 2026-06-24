@@ -149,6 +149,16 @@ Khi migrate từ Kubernetes + KEDA hoặc adapt từ KEDA documentation:
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Bài này mở rộng event-driven scaling sang non-Azure sources — nếu bài 2 là "Azure service queue depth", bài này là "bất kỳ queue/metric/schedule nào khác."
+
+**Cron scaling là điểm độc đáo nhất:** Không phải reactive (scale khi có event), mà là **predictive** (scale trước khi event xảy ra). Kết hợp cron (baseline warmup) + HTTP/event (handle variation) = best of both worlds.
+
+**Khi nhiều rule active → highest replica count thắng** — không phải OR, không phải average. Rule nào yêu cầu nhiều replica nhất, đó là số replica được set.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Kafka scaling** dựa trên consumer group lag, max replicas = số partition

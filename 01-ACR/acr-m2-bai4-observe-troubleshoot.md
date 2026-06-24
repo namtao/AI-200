@@ -336,6 +336,34 @@ WEBSITES_PORT được set: 5000  ← App Service forward đến port sai → 40
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Bài này là "bạn đã mất `docker exec` khi lên PaaS — đây là những gì thay thế nó."
+
+Với Docker thuần, khi có sự cố bạn có full control: `docker logs`, `docker exec -it bash`, `docker inspect`. Trên App Service, container chạy trên infrastructure Azure quản lý — bạn không có SSH mặc định, không có `docker exec`. Thay vào đó App Service cung cấp một bộ tool riêng.
+
+### So sánh toolchain debug: Docker vs App Service
+
+| Tình huống debug | Docker thuần | App Service |
+|---|---|---|
+| Xem log container | `docker logs <container>` | `az webapp log tail` / Log stream |
+| Xem log real-time | `docker logs -f` | `az webapp log tail` (tương đương) |
+| Xem environment variable | `docker inspect <container>` | Kudu → `/Env` page |
+| Vào terminal trong container | `docker exec -it <container> bash` | SSH — nhưng phải cài sẵn trong Dockerfile |
+| Browse file system trong container | `docker exec` → `ls` | Kudu file browser — chỉ xem được `/home`, không vào được container |
+| Log dài hạn / alerting | Docker logging driver (Splunk, ELK, Fluentd...) | Azure Monitor + Log Analytics + KQL |
+| Platform events (start/stop/crash) | `docker events` | `AppServicePlatformLogs` trong Log Analytics |
+
+**3 điểm khác biệt quan trọng nhất so với Docker:**
+
+1. **SSH phải được baked vào image — không có sau-sự-cố:** `docker exec` luôn có sẵn miễn là container đang chạy. SSH vào App Service yêu cầu cài `openssh-server` trong Dockerfile trước khi build. Nếu quên, khi sự cố xảy ra không còn cách vào container. Đây là lý do SSH config thường được thêm vào production image từ đầu, dù hiếm khi dùng.
+
+2. **Kudu chạy ngoài container — không phải trong container:** Dễ nhầm Kudu là "console của container". Thực ra Kudu là một site riêng biệt chạy song song. `docker inspect` cho bạn config của container từ góc nhìn Docker daemon. Kudu `/Env` cho bạn thấy env var *được inject vào* container — nhưng Kudu không thể browse file system bên trong container, chỉ browse được `/home` (shared volume).
+
+3. **Log phải ra stdout/stderr — cả Docker lẫn App Service đều chỉ capture đây:** Nếu app ghi log ra file (ví dụ `/var/log/app.log`) thay vì stdout, `docker logs` cũng trắng, `az webapp log tail` cũng trắng. Đây là "gotcha" phổ biến với app legacy hoặc framework có default ghi ra file.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Bật container logging: `az webapp log config --docker-container-logging filesystem`

@@ -224,6 +224,25 @@ Nếu readiness pass sớm nhưng app chưa thực sự ready → health endpoin
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Readiness và Liveness là hai câu hỏi khác nhau với hai hành động khác nhau — Docker `HEALTHCHECK` chỉ có một loại, ACA (và Kubernetes) có hai.
+
+### So sánh với Docker và App Service
+
+| | Docker `HEALTHCHECK` | App Service health check | ACA Readiness | ACA Liveness |
+|---|---|---|---|---|
+| Câu hỏi | "Healthy?" | "Responding?" | "Sẵn sàng nhận traffic?" | "Còn alive?" |
+| Khi fail | Mark unhealthy (không restart mặc định) | Remove từ load balancer | Ngừng route traffic | **Restart replica** |
+| Scope | Chạy trong container | Từ ngoài vào | Từ platform vào | Từ platform vào |
+| Check external dependency | Tùy bạn | Tùy bạn | Nên có (DB, model loaded) | **Không nên** |
+
+**Insight quan trọng nhất:** Liveness endpoint **không được check external dependency**. Nếu DB down và liveness trả 503 → ACA restart container liên tục → DB vẫn down, app bị cold start thêm → worse situation. Liveness chỉ check "process còn alive và không stuck không?"
+
+**`initialDelaySeconds` của liveness** phải đủ lớn để model load xong. Liveness quá aggressive = restart loop khi model đang load = app không bao giờ start được.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Readiness** fail → ngừng route traffic (replica vẫn chạy)

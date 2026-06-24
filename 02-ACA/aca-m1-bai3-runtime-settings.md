@@ -222,6 +222,23 @@ az containerapp secret set -n ai-api -g rg-aca-demo \
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** ACA tách rõ ràng hai loại config mà Docker và App Service để lẫn lộn — non-sensitive (env var) và sensitive (secret) — với một cơ chế bridge (secretref) để app không cần biết sự khác biệt.
+
+### So sánh với Docker và App Service
+
+| | Docker `docker run` | App Service app settings | ACA |
+|---|---|---|---|
+| Non-sensitive config | `-e KEY=VALUE` | App settings | `--env-vars KEY=VALUE` |
+| Sensitive config | `-e SECRET=abc` (không an toàn) | App settings (encrypted at rest) | `secret set` → tách riêng |
+| Bridge sensitive vào env var | Không có | Không tách biệt | `secretref:` syntax |
+| Rotate secret không redeploy | Không | ✅ | ✅ |
+
+**Điểm ACA làm rõ hơn App Service:** App Service lưu cả sensitive và non-sensitive trong cùng "app settings". ACA bắt bạn tách ra: sensitive vào secret store, non-sensitive vào env var. Kết quả là codebase an toàn hơn vì secret không bao giờ "lộ" ra trong YAML file.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Environment variables** → non-sensitive config: log level, URL, feature flag, tuning params

@@ -149,6 +149,26 @@ Consumption plan có performance variability vì shared infrastructure. Nếu SL
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** ACA resource allocation = per-container config với ratio constraint (Memory ≥ CPU×2), và Consumption vs Dedicated là lựa chọn giữa cost efficiency và performance predictability.
+
+### So sánh với Docker và App Service
+
+| | Docker | App Service | ACA Consumption | ACA Dedicated |
+|---|---|---|---|---|
+| CPU limit | `--cpus` (float) | Tier (S1=1 core, S2=2...) | 0.25–4 cores | Theo VM size |
+| Memory limit | `--memory` | Tier (S1=1.75GB...) | 0.5–8 GiB | Theo VM size |
+| CPU:Memory ratio | Tự do | Cố định theo tier | Memory ≥ CPU×2 | Theo VM size |
+| GPU support | ✅ với nvidia-docker | ❌ | ❌ | ✅ |
+| Performance variability | Theo host | Theo tier | Shared → có variability | Dedicated → consistent |
+
+**Hệ quả của Memory ≥ CPU×2:** Không thể set 4 CPU, 4 GiB — phải là 4 CPU, 8 GiB. Điều này có thể tăng cost nếu workload CPU-heavy nhưng memory-light.
+
+**OOM kill vs CPU throttle khác nhau hoàn toàn:** Memory → crash ngay (OOM kill). CPU → chậm dần (throttle). Cần biết container đang bị vấn đề nào để tăng đúng resource.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Memory allocation phải **≥ CPU × 2 GiB**

@@ -326,6 +326,33 @@ az webapp log tail \
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** App Service là "Docker host được quản lý" — bạn cung cấp image, Azure lo toàn bộ phần còn lại.
+
+Nếu với Docker thuần bạn phải `docker run` trên một server nào đó, thì App Service *là* server đó — chỉ có điều bạn không cần nhìn thấy nó. Bạn chỉ khai báo "tôi muốn chạy image này", Azure tự lo provisioning, load balancing, TLS, scaling.
+
+### So sánh với Docker thuần
+
+| Khía cạnh | Docker thuần | Azure App Service |
+|---|---|---|
+| Chạy container | `docker run` trên máy/server tự quản | Azure tự quản lý host |
+| Truy cập từ internet | Tự config reverse proxy, port, TLS | Tự động có HTTPS + custom domain |
+| Scaling | Tự cấu hình (compose, swarm, k8s) | Tự động theo App Service plan |
+| Xác thực với registry | `docker login` — phải lưu credential | Managed identity — không cần credential |
+| Cập nhật image mới | SSH vào server, pull + restart | `az webapp config container set` hoặc webhook |
+| Infrastructure | Bạn phải có host | Azure lo hoàn toàn |
+
+**Mental model:** Docker = toolset để build/run container. App Service = platform PaaS nhận image của bạn và chạy nó như một web app production-ready.
+
+**Điểm khác biệt cốt lõi so với Docker:**
+- `docker login` → Managed Identity (không bao giờ thấy password)
+- `docker pull + docker run` trên server → App Service plan tự lo
+- SSH vào server để cập nhật → webhook từ registry tự trigger restart
+- Port mapping thủ công → App Service expose port 80/443 tự động (container lắng nghe port gì thì App Service biết qua biến môi trường `WEBSITES_PORT`)
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] App Service hỗ trợ hai nguồn image: **ACR** (recommended) và **Other registries** (Docker Hub, GHCR, self-hosted)

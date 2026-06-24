@@ -492,6 +492,59 @@ RUN pip install -r requirements.txt  # bị chạy lại mỗi lần dù require
 
 ---
 
+## Bản chất của Cloud Build — ACR Tasks hay GitHub Actions đều là một thứ
+
+Sau khi hiểu ACR Tasks, một câu hỏi tự nhiên xuất hiện: *GitHub Actions cũng build được image, cần ACR Tasks làm gì?*
+
+Câu trả lời ngắn: **bản chất giống nhau — đều là chạy `docker build` trên một máy Linux trên cloud thay vì máy local của bạn.**
+
+### Vấn đề gốc rễ mà cả hai giải quyết
+
+Khi bạn chạy `docker build` trên máy local:
+
+```
+Máy local (macOS/Windows/Linux) → docker build → image
+```
+
+Kết quả phụ thuộc vào môi trường máy bạn, version Docker, kiến trúc CPU. Developer A và B có thể ra image khác nhau từ cùng một source code.
+
+Khi bạn chuyển build lên cloud — dù là ACR Tasks hay GitHub Actions — thực chất là:
+
+```
+Code của bạn → upload lên → Linux VM trên cloud → docker build → image
+```
+
+Máy Linux đó luôn là cùng một loại môi trường. Kết quả nhất quán cho mọi người trong team.
+
+### So sánh bản chất giữa các tool
+
+| Công đoạn | Máy local | GitHub Actions | ACR Tasks |
+|---|---|---|---|
+| Môi trường build | Máy của từng dev (macOS/Win/Linux) | Linux VM do GitHub cung cấp | Linux VM do Azure cung cấp |
+| Cần cài Docker | ✅ bắt buộc | ❌ runner đã có sẵn | ❌ không cần |
+| Ai lo VM | Bạn tự lo | GitHub lo | Azure lo |
+| Trigger tự động | ❌ | ✅ push/PR/schedule | ✅ push/base image update/schedule |
+| Tích hợp với registry | Manual push | Push thủ công hoặc thêm step | Push tự động vào ACR |
+| Phù hợp khi | Đang phát triển, thử nghiệm | Dùng GitHub, không cần Azure | Đã dùng Azure ecosystem |
+
+
+### Vậy khi nào nên dùng cái nào?
+
+**Dùng GitHub Actions thuần** khi:
+- Team dùng GitHub
+- Không cần tích hợp sâu với Azure
+- Muốn một giải pháp đơn giản, phổ biến, nhiều tài liệu
+
+**Dùng ACR Tasks** khi:
+- Team đã dùng Azure (AKS, App Service, Azure DevOps)
+- Muốn base image trigger — tự động rebuild khi base image có security patch
+- Muốn tất cả build, registry, và deploy nằm trong một ecosystem Azure
+- Không muốn viết và maintain GitHub Actions workflow
+
+**Điểm mấu chốt:** Không có gì magic trong ACR Tasks. Nó là một managed build service, giống GitHub Actions nhưng baked vào Azure. Nếu bạn đã hiểu GitHub Actions, bạn đã hiểu 80% cách ACR Tasks hoạt động.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] ACR Tasks cho phép build image trên Azure mà **không cần Docker cài local**
