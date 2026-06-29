@@ -198,6 +198,28 @@ RETURNING id, (xmax = 0) AS is_new;
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** PostgreSQL query layer có 4 killer features không có (hoặc kém hơn) ở các DB khác: JSONB operators với GIN, keyset pagination thay OFFSET, RETURNING clause, và upsert với EXCLUDED — đây là những gì khiến PostgreSQL phù hợp cho AI app hơn MySQL hay SQL Server.
+
+### So sánh với MySQL vs SQL Server vs DynamoDB
+
+| Feature | PostgreSQL | MySQL | SQL Server | DynamoDB |
+|---|---|---|---|---|
+| JSONB `@>` containment + GIN index | ✅ | ❌ (JSON_CONTAINS, no GIN) | ❌ (JSON_VALUE, no GIN) | ✅ Native (different API) |
+| `ON CONFLICT DO UPDATE` (upsert) | ✅ `EXCLUDED` pseudo-table | ✅ `ON DUPLICATE KEY UPDATE` | ✅ `MERGE` (verbose) | ✅ `ConditionExpression` |
+| `RETURNING` clause | ✅ | ❌ (dùng `LAST_INSERT_ID()`) | ✅ `OUTPUT` clause | ✅ `ReturnValues` |
+| Keyset pagination | ✅ Tuple comparison `(col1,col2) <` | Partial (no tuple compare) | ✅ (workaround) | ✅ `ExclusiveStartKey` |
+| Recursive CTE | ✅ `WITH RECURSIVE` | ✅ (từ 8.0) | ✅ | ❌ |
+| `ILIKE` case-insensitive | ✅ | ❌ (case-insensitive by default) | ✅ `LIKE` (case-insensitive by collation) | N/A |
+| `NULLS FIRST/LAST` | ✅ | ❌ | ❌ (workaround `CASE`) | N/A |
+
+**Keyset pagination là non-obvious nhưng critical cho AI app:** DynamoDB dùng `ExclusiveStartKey` — conceptually giống keyset. MySQL `OFFSET 10000` phải scan và discard 10,000 rows. PostgreSQL tuple comparison `(created_at, id) < (last_ts, last_id)` nhảy thẳng đến vị trí cần đọc qua index. Với conversation history của AI app (hàng triệu messages), đây là sự khác biệt giữa 5ms và 5 seconds.
+
+**`EXCLUDED` trong upsert là PostgreSQL-specific syntax:** MySQL dùng `VALUES(col)` (deprecated), SQL Server dùng `MERGE ... WHEN MATCHED THEN UPDATE SET col = source.col`. Cả 3 đều upsert nhưng `EXCLUDED` là cách PostgreSQL idiomatic nhất — exam hay hỏi về syntax differences.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] SQL execution order: FROM → WHERE → GROUP BY → HAVING → **SELECT** → ORDER BY → LIMIT

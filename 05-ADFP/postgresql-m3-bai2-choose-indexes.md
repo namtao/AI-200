@@ -143,6 +143,33 @@ REINDEX INDEX CONCURRENTLY idx_products_embedding;
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Chọn IVFFlat hay HNSW là quyết định dựa trên 3 yếu tố — build time constraint, memory budget, và insert pattern (batch vs real-time) — không phải chỉ "HNSW tốt hơn" mà là tùy workload.
+
+### So sánh với Weaviate HNSW vs Qdrant HNSW vs Faiss IVF (decision framework)
+
+| Scenario | pgvector recommendation | Reasoning |
+|---|---|---|
+| 5M vectors, daily batch rebuild, <30 min build | **IVFFlat** `lists=sqrt(n)` | Build time constraint; batch = OK to rebuild |
+| 1M vectors, real-time inserts, 99% recall needed | **HNSW** `m=16, ef_c=64` | Incremental insert, high recall |
+| 100M+ vectors, Azure production | **Azure DiskANN** (Azure-specific) | Graph-based, disk-optimized, enterprise scale |
+| <10K vectors, dev/test | **No index** (exact scan) | Index overhead not worth it |
+| Memory-constrained server | **IVFFlat** | Lower memory footprint |
+| Unknown pattern, start conservative | **HNSW** `m=16, ef_c=64, ef_s=40` | Default production-safe |
+
+| Build time estimate | IVFFlat | HNSW |
+|---|---|---|
+| 1M vectors | 5-15 min | 15-45 min |
+| 5M vectors | 30-60 min | **2-6 hours** |
+| 10M vectors | ~2 hours | **4-12 hours** |
+
+**Azure DiskANN không có trong pgvector open-source:** DiskANN là Microsoft Research algorithm được tích hợp vào Azure Database for PostgreSQL Flexible Server nhưng không available trong vanilla pgvector. Weaviate và Qdrant standalone cũng không có DiskANN. Đây là Azure-specific competitive advantage tại 100M+ scale.
+
+**HNSW `ef_construction` ảnh hưởng index quality (build-time only), không ảnh hưởng query speed:** Tăng `ef_construction` từ 64 → 200 → build lâu hơn, index quality cao hơn → nhưng query speed không đổi. Query speed chỉ phụ thuộc `ef_search`. Exam thường hỏi: "tăng tham số nào để cải thiện recall mà không rebuild?" → `ef_search` (runtime), không phải `ef_construction` (build-time).
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] ANN index: 95-99% recall, 100–1000× faster than exact search

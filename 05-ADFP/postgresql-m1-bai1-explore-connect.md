@@ -133,6 +133,28 @@ postgresql://user:password@server.postgres.database.azure.com:6432/db?sslmode=re
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Azure Database for PostgreSQL là fully managed PostgreSQL với built-in connection pooling, Entra auth, và extension ecosystem — thay thế việc tự quản lý PostgreSQL VM hoặc chọn Cosmos DB khi cần relational + vector trong một service.
+
+### So sánh với Azure Cosmos DB for PostgreSQL vs Amazon RDS PostgreSQL vs Self-managed VM
+
+| | Azure DB for PostgreSQL | Cosmos DB for PostgreSQL (Citus) | Amazon RDS PostgreSQL | Self-managed VM |
+|---|---|---|---|---|
+| Quản lý infrastructure | ✅ Fully managed | ✅ Fully managed | ✅ Fully managed | ❌ Tự quản |
+| PostgreSQL extensions (pgvector) | ✅ Native | ✅ | ✅ | ✅ |
+| Horizontal sharding | ❌ Single server | ✅ Citus distributed | ❌ | Tự cấu hình |
+| Built-in PgBouncer | ✅ Port 6432 | ❌ | ❌ | Tự cài |
+| Entra/AAD auth | ✅ Native | ✅ | ❌ | ❌ |
+| Compute tiers | B/D/E-series | Coordinator + Workers | db.t/m/r | Tự chọn VM |
+| Azure Backup + PITR | ✅ 7-35 ngày | ✅ | ✅ | Tự cấu hình |
+
+**PgBouncer là differentiator quan trọng:** Các managed PostgreSQL khác (RDS, Cloud SQL) không có built-in PgBouncer — phải tự deploy. Azure Database tích hợp sẵn, nhưng chỉ trên GP và MO tiers — đây là exam trap phổ biến.
+
+**Entra auth flow không giống SQL auth:** Token từ `ossrdbms-aad.database.windows.net` scope — không phải scope thông thường của Azure AD. Token expire sau ~1 giờ → app phải refresh. Password-based connections không expire. Đây là sự khác biệt operational quan trọng với SQL Server hay MySQL.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] 3 tiers: **Burstable** (dev) · **General Purpose** (production) · **Memory Optimized** (AI, analytics)

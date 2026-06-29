@@ -104,6 +104,27 @@ Output xấu: `Seq Scan` → kiểm tra operator class match, index tồn tại,
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** IVFFlat và HNSW là hai ANN algorithms với trade-off rõ ràng — IVFFlat cho batch-update workloads với memory constraint, HNSW cho production real-time với recall cao — và operator class phải khớp distance operator nếu không PostgreSQL silently fall back to seq scan.
+
+### So sánh với Faiss (Meta) vs ScaNN (Google) vs Annoy (Spotify)
+
+| | pgvector HNSW | pgvector IVFFlat | Faiss HNSW | Faiss IVF | Annoy |
+|---|---|---|---|---|---|
+| Build on empty table | ✅ | ❌ (cần data) | ✅ | ❌ | ✅ |
+| Incremental inserts | ✅ | Degraded recall | ✅ | Degraded | ❌ (read-only after build) |
+| Query tunability | `ef_search` (no rebuild) | `probes` (no rebuild) | `ef` (no rebuild) | `nprobe` | `search_k` |
+| Memory per vector (1536-dim) | ~1.5x data | ~1x data | ~1.5x data | ~1x data | ~1x data |
+| SQL integration | ✅ Native | ✅ Native | ❌ Standalone | ❌ Standalone | ❌ Standalone |
+| Concurrent build | `CREATE INDEX CONCURRENTLY` | `CREATE INDEX CONCURRENTLY` | ❌ | ❌ | ❌ |
+
+**Operator class mismatch là silent failure — đây là exam trap số 1:** PostgreSQL không throw error khi operator class không khớp với distance operator. Query vẫn chạy, vẫn trả kết quả đúng — nhưng dùng sequential scan thay vì index. Với 1M vectors, sequential scan mất seconds thay vì milliseconds. `EXPLAIN ANALYZE` là cách duy nhất phát hiện.
+
+**IVFFlat "cần data trước khi tạo index" khác với Faiss IVF cơ bản:** IVFFlat dùng k-means clustering trên data hiện có để tạo centroids. Empty table = không có data để cluster = index tạo thành công nhưng không có centroids = không có gì để search. HNSW graph construction thêm từng vector vào graph incrementally nên empty table hoàn toàn OK.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **IVFFlat:** `lists` = rows/1000 (≤1M) · `probes` = query-time search width

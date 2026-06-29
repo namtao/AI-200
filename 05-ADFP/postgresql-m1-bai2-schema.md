@@ -159,6 +159,28 @@ Hầu hết DDL statements trong PostgreSQL là **transactional** — có thể 
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** PostgreSQL schema design cho AI app là chọn đúng data types (BIGSERIAL, JSONB, TIMESTAMPTZ), đặt constraints đúng nơi (database level, không phải application level), và hiểu DDL transactional — khác với MySQL và SQL Server ở những điểm không hiển nhiên.
+
+### So sánh với MySQL vs SQL Server vs MongoDB (document DB)
+
+| | PostgreSQL | MySQL | SQL Server | MongoDB |
+|---|---|---|---|---|
+| DDL transactional | ✅ `BEGIN/COMMIT` DDL | ❌ Auto-commit DDL | ❌ Một số DDL auto-commit | N/A |
+| Native JSON type | **JSONB** (binary, indexable) | JSON (text, limited index) | JSON (text functions) | Native document |
+| Auto-increment | `BIGSERIAL` / `GENERATED` | `AUTO_INCREMENT` | `IDENTITY` | ObjectId |
+| UUID gen | `gen_random_uuid()` built-in | UUID() | `NEWID()` | Built-in ObjectId |
+| `ON DELETE CASCADE` | ✅ | ✅ | ✅ | N/A (denormalized) |
+| CHECK constraints | ✅ Enforced | ✅ (từ 8.0.16) | ✅ | Validation rules |
+| Composite index selectivity | Leftmost prefix rule | Leftmost prefix rule | Leftmost prefix rule | Compound index |
+
+**PostgreSQL DDL là transactional — đây là điểm khác biệt lớn nhất:** Với MySQL và SQL Server, `ALTER TABLE` không thể ROLLBACK. PostgreSQL cho phép wrap toàn bộ schema migration trong `BEGIN/COMMIT` — nếu index creation fails, column addition cũng rollback. Critical cho zero-downtime migration.
+
+**JSONB vs JSON (text) là khác biệt thực sự:** MongoDB lưu BSON natively, nhưng PostgreSQL JSONB cho phép dùng GIN index trên operators `@>`, `?` — không thể làm với TEXT hay VARCHAR. MySQL JSON type không có `@>` containment operator — phải dùng `JSON_CONTAINS()` function, không index efficient như JSONB với GIN.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] `BIGSERIAL` cho high-volume AI app insert

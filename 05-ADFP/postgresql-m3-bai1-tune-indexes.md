@@ -171,6 +171,28 @@ LIMIT 10;
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Vector search performance tuning là 3 layers — memory config (shared_buffers, work_mem), planner hints (random_page_cost, effective_io_concurrency cho SSD), và pgvector parameters (ef_search, probes) — và thứ tự ưu tiên là memory trước, planner sau, algorithm last.
+
+### So sánh với Pinecone vs Qdrant vs Elasticsearch (tuning approach)
+
+| Tuning dimension | pgvector (PostgreSQL) | Pinecone | Qdrant | Elasticsearch |
+|---|---|---|---|---|
+| Memory cache config | `shared_buffers` (manual) | Managed | `memmap_threshold` | `indices.memory.index_buffer_size` |
+| Query-level memory | `SET LOCAL work_mem = '256MB'` | N/A | N/A | `circuit_breaker` |
+| Random I/O cost hint | `random_page_cost = 1.1` (SSD) | N/A (managed) | N/A | N/A |
+| ANN search width | `SET hnsw.ef_search = 100` | `top_k` tuning | `hnsw_ef` | N/A |
+| Per-query precision tuning | `SET LOCAL hnsw.ef_search` | ❌ | Per-request `ef` | ❌ |
+| Cache hit monitoring | `pg_statio_user_tables` | Managed metrics | `/metrics` | `_nodes/stats` |
+| Index storage type | `<->` L2, `<=>` cosine, `<#>` IP | Cosine/Dot/Euclidean | Multiple | Cosine/Dot/L2 |
+
+**`work_mem` per-operation per-connection là footgun:** `SET work_mem = '256MB'` globally với 100 connections × 5 sort operations each = 128 GB potential memory usage. PostgreSQL không có global cap. Qdrant và Pinecone managed services handle memory allocation automatically — pgvector đòi hỏi operator hiểu connection arithmetic này.
+
+**Inner product `<#>` là fastest nhưng requires normalized vectors:** Cosine distance normalize internally (extra computation). L2 tính sqrt (expensive). Inner product = just dot product = fastest — nhưng chỉ valid khi vectors pre-normalized to unit length. Nếu dùng `<#>` trên un-normalized embeddings → kết quả sai không có error, chỉ kém relevant. Đây là silent correctness bug.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Cache hit ratio < 99% → tăng `shared_buffers`

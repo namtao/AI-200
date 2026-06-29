@@ -124,6 +124,29 @@ embedding sparsevec(10000)
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** pgvector biến PostgreSQL thành vector database bằng cách thêm `vector` type và distance operators — không cần Pinecone hay Weaviate nếu data đã trong PostgreSQL, vì pgvector cho phép JOIN vector search với metadata trong cùng một query.
+
+### So sánh với Pinecone vs Weaviate vs Qdrant vs Azure AI Search
+
+| | pgvector (PostgreSQL) | Pinecone | Weaviate | Qdrant | Azure AI Search |
+|---|---|---|---|---|---|
+| Vector storage | `vector(n)` column | Native | Native | Native | Vector field |
+| Metadata filtering | ✅ Full SQL (JOIN, WHERE, CTE) | ✅ Metadata filters | ✅ GraphQL filters | ✅ Payload filters | ✅ OData filters |
+| Exact SQL queries alongside | ✅ Native | ❌ | Partial | ❌ | Partial |
+| Hybrid search (BM25 + vector) | Manual (`ts_rank` + weight) | ✅ Built-in | ✅ Built-in | ✅ Built-in | ✅ Built-in |
+| Data consistency (ACID) | ✅ Full ACID | Eventual | Eventual | Eventual | Eventual |
+| Cost model | Azure DB tier cost | Per vector/query | Cluster cost | Cluster cost | Per index/query |
+| Dimension types | `vector`, `halfvec`, `sparsevec` | 1 type | 1 type | 1 type | 1 type |
+| Max dimensions | 16,000 | 20,000 | No limit | 65,535 | 3,072 |
+
+**pgvector là "good enough" vector DB — không phải "best" vector DB:** Pinecone, Weaviate, Qdrant được tối ưu hóa từ đầu cho ANN search → latency thấp hơn ở scale lớn (tens of millions vectors). pgvector trade-off là tích hợp PostgreSQL hoàn hảo: một transaction vừa update metadata vừa update embedding, không cần sync giữa hai systems.
+
+**`halfvec` vs `vector` — storage cut in half nhưng không free:** 16-bit float thay vì 32-bit → precision loss nhỏ nhưng đo được. Pinecone và Qdrant hỗ trợ quantization tương tự (scalar quantization). Không dùng `halfvec` mà không test recall impact trước — đây là gotcha thường bị bỏ qua.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] Enable: `CREATE EXTENSION IF NOT EXISTS vector;`

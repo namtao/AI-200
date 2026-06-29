@@ -198,6 +198,28 @@ ALTER TABLE documents SET (
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Index lifecycle và retrieval patterns là operational layer của pgvector — stale flag pattern cho embedding updates, parallel column strategy cho model migration, hybrid search cho recall, và distance threshold cho precision control.
+
+### So sánh với Pinecone vs Elasticsearch vs Azure AI Search (retrieval patterns)
+
+| Pattern | pgvector PostgreSQL | Pinecone | Elasticsearch | Azure AI Search |
+|---|---|---|---|---|
+| Embedding update (stale tracking) | Manual `embedding_stale` column | Upsert native | Update by `_id` | Merge/upload document |
+| Model migration (zero downtime) | Parallel column + rename | Recreate index | Reindex API | New index + alias swap |
+| Index rebuild (no downtime) | `CREATE INDEX CONCURRENTLY` | Automatic managed | `_reindex` API | Không block |
+| Hybrid search | Manual SQL weight | Hybrid search API | RRF built-in | Hybrid built-in (RRF) |
+| Distance threshold filter | `WHERE embedding <=> $1 < 0.4` | `score_threshold` | `min_score` | `@search.score` filter |
+| Full-text weight | `ts_rank` function | ❌ | BM25 built-in | BM25 built-in |
+| Storage monitoring | `pg_relation_size()` | Managed | `_cat/indices` | Portal metrics |
+
+**`CREATE INDEX CONCURRENTLY` không block nhưng có cái giá:** Concurrent index build dùng nhiều resources hơn normal build (đọc table 2-3 lần thay vì 1 lần) và mất gần gấp đôi thời gian. Trong khi đó, Pinecone và Azure AI Search manage index operations hoàn toàn — không cần operator chọn concurrent hay không. Đây là trade-off của self-managed index.
+
+**Stale flag pattern giải quyết vấn đề mà dedicated vector DBs không có:** Pinecone, Qdrant chỉ lưu vector + metadata — không lưu source content. Khi update content, update vector là atomic. PostgreSQL lưu cả source text + embedding trong cùng table → cần explicit coordination (stale flag) để decoupled update. Phức tạp hơn nhưng đổi lại có full SQL flexibility.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] `CREATE INDEX CONCURRENTLY` → rebuild không block queries

@@ -129,6 +129,28 @@ Index trên parent → auto-create trên tất cả partitions. Mỗi partition 
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Data layout optimization cho vector search là 3 quyết định — structured columns vs JSONB cho metadata (ảnh hưởng index efficiency), pre-filter vs post-filter pattern (ảnh hưởng search scope), và partitioning (chỉ khi tens of millions rows với natural partition key).
+
+### So sánh với MongoDB vs Cassandra vs DynamoDB (metadata + vector layout)
+
+| Design decision | PostgreSQL (pgvector) | MongoDB | Cassandra | DynamoDB |
+|---|---|---|---|---|
+| Structured metadata index | B-tree (equality + range) | Compound index | Partition + clustering key | GSI/LSI |
+| JSONB/document metadata | GIN (containment only) | ✅ All field types | ❌ | Map type (no secondary index) |
+| Pre-filter (reduce vector scope) | `WHERE category = X` before ORDER BY | `$match` before `$vectorSearch` | Partition key filter | Query + filter |
+| Post-filter (fetch more, then filter) | `WITH candidates AS (... LIMIT 100)` | `numCandidates` parameter | N/A | Filter expression |
+| Partial index | ✅ `WHERE in_stock = true` | Partial index | ❌ | ❌ |
+| Range partitioning | `PARTITION BY RANGE (date)` | Time-series collection | ✅ Native | Table design |
+| Composite leftmost rule | ✅ | ✅ | ✅ (partition key first) | ✅ (PK first) |
+
+**Pre-filter vs post-filter không chỉ là SQL style — đây là correctness issue với ANN:** ANN index tìm approximate nearest neighbors trong TOÀN TABLE. Nếu dùng post-filter với LIMIT 10 từ vector search, rồi filter bỏ 9 trong 10 results → trả về 1 result mặc dù có thể 50 matching vectors ngoài kia. `LIMIT 100` trong post-filter là cách workaround (fetch 100, expect filter keeps 10) nhưng không đảm bảo. MongoDB giải quyết bằng `numCandidates` parameter — pgvector không có native solution cho vấn đề này.
+
+**Partial index là feature ít dùng nhất nhưng có lợi nhất cho AI app:** `CREATE INDEX ... WHERE in_stock = true` tạo index chỉ cho subset rows → nhỏ hơn → fit trong memory tốt hơn → cache hit rate cao hơn → faster. DynamoDB và Cassandra không có partial index concept. MongoDB có partial index filter. Đây là PostgreSQL strength mà thường bị bỏ qua khi thiết kế schema.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] 1536-dim = **~6 KB/vector**, HNSW adds ~50% overhead

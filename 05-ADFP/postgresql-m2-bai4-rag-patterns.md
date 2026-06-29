@@ -177,6 +177,29 @@ HNSW handles deletions gracefully. IVFFlat có thể cần rebuild sau significa
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** RAG với pgvector là 2-table design (source_documents + document_chunks với CASCADE) kết hợp vector search, context window expansion, và citation-aware grouping trong một SQL query — thay vì orchestrate nhiều service calls như với Pinecone + separate metadata store.
+
+### So sánh với LangChain PGVector vs Pinecone + metadata vs Azure AI Search + Blob
+
+| | pgvector RAG (custom) | LangChain PGVectorStore | Pinecone + PostgreSQL | Azure AI Search |
+|---|---|---|---|---|
+| Chunk + metadata join | ✅ SQL JOIN | ✅ Managed | 2 separate calls | ✅ Single query |
+| Context window (adjacent chunks) | ✅ SQL BETWEEN | ❌ (app logic) | ❌ (app logic) | ❌ (app logic) |
+| Citation grouping | ✅ `GROUP BY` + `array_agg` | ❌ | ❌ | Partial |
+| Token budget tracking | ✅ `SUM() OVER (ORDER BY)` | ❌ | ❌ | ❌ |
+| Atomic update (doc + chunks) | ✅ CASCADE DELETE | ✅ | ❌ (2 systems) | ✅ |
+| Hybrid search | Manual SQL | ❌ | ❌ Native | ✅ Built-in RRF |
+| Schema flexibility | Custom | Fixed schema | Custom | Custom |
+| Operational complexity | Medium | Low | High (2 systems) | Low |
+
+**2-table design với CASCADE là thiết kế không obvious từ vector DB mindset:** Dedicated vector DBs (Pinecone, Qdrant) không có relational model — xóa document phải manual xóa từng chunk bằng filter query. PostgreSQL `ON DELETE CASCADE` = xóa `source_documents` row → tất cả `document_chunks` tự xóa atomically. Nếu xóa giữa chừng bị interrupted, không có orphan chunks.
+
+**Context window expansion (±1 adjacent chunks) không thể trong Pinecone:** Pinecone không biết "chunk_index" relationship giữa chunks của cùng document — chỉ biết similarity score. SQL `BETWEEN mc.chunk_index - 1 AND mc.chunk_index + 1` kết hợp với `JOIN ON document_id` là pattern native của relational DB, không phải vector DB. Đây là lý do tại sao RAG với complex context management thuộc về PostgreSQL hơn dedicated vector store.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] RAG: query embedding → retrieve chunks → LLM generates answer

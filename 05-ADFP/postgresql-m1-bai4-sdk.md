@@ -229,6 +229,29 @@ def save_message(conversation_id: int, role: str, content: str) -> int:
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** psycopg v3 + ConnectionPool là production pattern chuẩn cho Python PostgreSQL — không phải SQLAlchemy ORM, không phải asyncpg nếu không cần async, và không phải tạo connection per request dù code đơn giản hơn.
+
+### So sánh với SQLAlchemy vs asyncpg vs psycopg2 vs pyodbc
+
+| | psycopg v3 | psycopg2 | SQLAlchemy Core | asyncpg | pyodbc |
+|---|---|---|---|---|---|
+| PostgreSQL-specific | ✅ | ✅ | Agnostic | ✅ | ❌ |
+| Async support | ✅ (`psycopg.AsyncConnection`) | ❌ | ✅ (via async engine) | ✅ | ❌ |
+| `COPY` command | ✅ Native | ✅ | Workaround | ✅ | ❌ |
+| Binary format transfer | ✅ Default (`psycopg[binary]`) | Optional | Via psycopg2 | ✅ Default | ❌ |
+| Connection pool built-in | `psycopg_pool` separate | ❌ | ✅ Built-in | ✅ | ❌ |
+| `%s` parameterization | ✅ | ✅ | `:named` / `?` | `$1` positional | `?` |
+| ORM layer | ❌ | ❌ | ✅ | ❌ | ❌ |
+| Azure Entra token auth | ✅ password param | ✅ | Via psycopg2 | ✅ | Via connection string |
+
+**`executemany` vs `COPY` — threshold là 10K rows:** SQLAlchemy ORM sẽ emit individual `INSERT` per object bởi vì ORM cần track object identity. psycopg `COPY` bypass toàn bộ SQL parser trên server → 2-10x faster. Nếu bài yêu cầu "fastest bulk insert" → `COPY`, không phải `executemany` hay ORM bulk_save.
+
+**DeadlockDetected vs OperationalError — retry logic khác nhau:** `OperationalError` là transient (connection drop, timeout) → retry với exponential backoff. `DeadlockDetected` là PostgreSQL đã chủ động chọn transaction này làm victim → rollback ngay và retry without delay (deadlock resolved khi one side rolls back). Đây là exam trap: không exponential backoff cho deadlock.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] `psycopg` v3 là recommended Python adapter, install `psycopg[binary]`

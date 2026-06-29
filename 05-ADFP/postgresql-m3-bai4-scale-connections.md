@@ -153,6 +153,28 @@ Azure Monitor metrics cần theo dõi:
 
 ---
 
+## Bản chất bài này là gì?
+
+**Một câu:** Scaling Azure Database for PostgreSQL cho vector workload là vertical first (Memory Optimized cho index-in-memory), PgBouncer transaction mode cho connection multiplexing, read replicas cho query volume — thứ tự này quan trọng vì mỗi bước giải quyết vấn đề khác nhau.
+
+### So sánh với Azure Cosmos DB for NoSQL vs Redis Cache vs Amazon Aurora PostgreSQL
+
+| Scaling dimension | Azure DB for PostgreSQL | Cosmos DB for NoSQL | Azure Cache for Redis | Aurora PostgreSQL |
+|---|---|---|---|---|
+| Vertical scale (compute) | Tier upgrade (restart) | RU/s adjustment (no restart) | Cache size (no restart) | Instance type change |
+| Read replicas | 5 replicas, async | Global read replicas | ❌ (no SQL) | 15 replicas |
+| Connection pooling | PgBouncer built-in (GP/MO) | N/A (HTTP API) | N/A | RDS Proxy ($) |
+| Max connections (4 vCore GP) | 1,718 | No connection concept | 10,000 | 5,000 |
+| Caching layer | In-memory (shared_buffers) | Integrated cache | External (Redis) | Buffer pool |
+| Query latency target | P95 <50ms (Memory Opt) | <10ms (key-value) | <1ms | P95 <50ms |
+| Vector search | pgvector native | ❌ | ❌ | pgvector |
+
+**Read replicas giải quyết throughput, không phải latency — đây là exam trap quan trọng nhất trong bài:** Nếu P95 latency là 150ms và target là 50ms, adding read replica vẫn cho P95 150ms per query. Latency là single-query performance → cần vertical scale (Memory Optimized tier, more vCores, indexes in memory). Throughput là total queries/second → read replicas. Nhầm lẫn hai khái niệm này là lỗi phổ biến nhất trong exam questions về scaling.
+
+**PgBouncer transaction mode làm vô hiệu hóa `SET` parameters — gotcha khi optimize per-query:** `SET hnsw.ef_search = 200` trong transaction mode không persist sau transaction vì connection trả về pool. Phải dùng `SET LOCAL hnsw.ef_search = 200` trong mỗi transaction. Nếu dùng session mode PgBouncer, `SET` persist — nhưng session mode không giúp nhiều cho connection multiplication. Đây là không obvious khi chuyển từ direct connections sang PgBouncer.
+
+---
+
 ## Checklist ghi nhớ cho AI-200
 
 - [ ] **Memory Optimized** tier: 8 GB/vCore, best cho vector workloads
