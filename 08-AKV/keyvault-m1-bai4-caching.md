@@ -164,3 +164,7 @@ SDK has built-in retry policy. Log 429 events để tune cache TTL.
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./keyvault-m1-bai3-versioning-rotation.md) · [🏠 Mục lục](../README.md) · [Assessment →](./keyvault-m1-module-assessment.md)

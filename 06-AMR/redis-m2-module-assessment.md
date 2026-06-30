@@ -149,3 +149,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành.*
+
+---
+
+[← Bài 3](./redis-m2-bai3-broadcast-vs-distributed.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./redis-m3-bai1-index-query-vectors.md)

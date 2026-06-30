@@ -586,3 +586,7 @@ requests
 ---
 
 *Tổng hợp hoàn thành — M1 (5 bài) + M2 (4 bài) + 2 assessments.*
+
+---
+
+[← Assessment](./monitor-m2-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

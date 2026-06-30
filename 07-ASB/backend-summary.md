@@ -516,3 +516,7 @@ Cold start > 30s → Event Grid nhận timeout → **auto retry với exponentia
 ---
 
 *Tổng hợp hoàn chỉnh 07-ASB — 3 modules · 12 bài học · 15 files.*
+
+---
+
+[← Assessment](./backend-m3-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

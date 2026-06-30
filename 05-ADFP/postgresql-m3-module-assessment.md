@@ -160,3 +160,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. PostgreSQL Learning Path kết thúc.*
+
+---
+
+[← Bài 4](./postgresql-m3-bai4-scale-connections.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./postgresql-summary.md)

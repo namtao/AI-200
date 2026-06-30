@@ -189,3 +189,7 @@ KHÔNG publish internal state changes mà no external subscriber cần biết.
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./backend-m2-bai3-delivery-retry.md) · [🏠 Mục lục](../README.md) · [Assessment →](./backend-m2-module-assessment.md)

@@ -139,4 +139,4 @@ func settings encrypt
 
 ---
 
-*Bài tiếp theo: Bài 5 — Configure identity and access*
+[← Bài 3](./backend-m3-bai3-triggers-bindings.md) · [🏠 Mục lục](../README.md) · [Bài 5 →](./backend-m3-bai5-identity-access.md)

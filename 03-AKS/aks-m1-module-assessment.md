@@ -148,3 +148,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Bài tiếp theo: AKS Module 2*
+
+---
+
+[← Bài 3](./aks-m1-bai3-deploy-applications.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./aks-m2-bai1-configmaps.md)

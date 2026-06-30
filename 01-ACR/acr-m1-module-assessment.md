@@ -149,3 +149,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Bài tiếp theo: Exercise — Build and manage a container image with ACR Tasks*
+
+---
+
+[← Bài 3](./acr-m1-bai3-tag-and-version-images.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./acr-m2-bai1-deploy-containers-app-service.md)

@@ -151,3 +151,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành.*
+
+---
+
+[← Bài 3](./backend-m1-bai3-process-messages.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./backend-m2-bai1-concepts.md)

@@ -190,3 +190,7 @@ Azure Monitor metrics cần theo dõi:
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./postgresql-m3-bai3-data-layout.md) · [🏠 Mục lục](../README.md) · [Assessment →](./postgresql-m3-module-assessment.md)

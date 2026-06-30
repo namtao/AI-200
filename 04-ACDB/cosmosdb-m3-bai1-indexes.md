@@ -160,4 +160,4 @@ Thiếu partition key trong index → queries filter theo partition key phải s
 
 ---
 
-*Bài tiếp theo: Bài 2 — Configure range and composite indexes*
+[← Assessment](./cosmosdb-m2-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./cosmosdb-m3-bai2-range-composite-indexes.md)

@@ -547,3 +547,7 @@ psql -c "REINDEX INDEX CONCURRENTLY documents_embedding_idx;"
 ---
 
 *Tổng hợp AI-200 · Azure Database for PostgreSQL · 3 Modules · 12 Lessons*
+
+---
+
+[← Assessment](./postgresql-m3-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

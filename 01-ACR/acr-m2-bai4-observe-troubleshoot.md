@@ -384,4 +384,4 @@ Với Docker thuần, khi có sự cố bạn có full control: `docker logs`, `
 
 ---
 
-*Bài tiếp theo: Exercise — Deploy a container to Azure App Service*
+[← Bài 3](./acr-m2-bai3-configure-app-settings.md) · [🏠 Mục lục](../README.md) · [Assessment →](./acr-m2-module-assessment.md)

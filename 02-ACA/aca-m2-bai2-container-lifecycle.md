@@ -218,4 +218,4 @@ Sau khi fix → start lại nếu đã stop
 
 ---
 
-*Bài tiếp theo: Bài 3 — Monitor logs and troubleshoot issues*
+[← Bài 1](./aca-m2-bai1-update-images-revisions.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./aca-m2-bai3-monitor-logs.md)

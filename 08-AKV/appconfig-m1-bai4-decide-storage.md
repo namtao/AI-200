@@ -125,3 +125,7 @@ Application
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./appconfig-m1-bai3-keyvault-reference.md) · [🏠 Mục lục](../README.md) · [Assessment →](./appconfig-m1-module-assessment.md)

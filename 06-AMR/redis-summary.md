@@ -483,3 +483,7 @@ Request → Redis (session + cache check)
 ---
 
 *Tổng hợp hoàn thành — 3 modules, 14 files (9 bài học + 3 assessments + 1 module-assessment tổng hợp + file này)*
+
+---
+
+[← Assessment](./redis-m3-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

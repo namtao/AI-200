@@ -146,3 +146,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành.*
+
+---
+
+[← Bài 4](./monitor-m2-bai4-alerts.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./monitor-summary.md)

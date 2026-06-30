@@ -331,4 +331,4 @@ Khi chạy Docker thuần, bạn kiểm soát mọi thứ qua `docker run`: port
 
 ---
 
-*Bài tiếp theo: Bài 3 — Configure application settings*
+[← Bài 1](./acr-m2-bai1-deploy-containers-app-service.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./acr-m2-bai3-configure-app-settings.md)

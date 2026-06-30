@@ -199,4 +199,4 @@ Nếu EXTERNAL-IP là `<pending>` → Azure đang provision Load Balancer, chờ
 
 ---
 
-*Bài tiếp theo: Bài 3 — Deploy applications to Azure Kubernetes Service*
+[← Bài 1](./aks-m1-bai1-deployment-manifests.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./aks-m1-bai3-deploy-applications.md)

@@ -169,4 +169,4 @@ postgresql://user:password@server.postgres.database.azure.com:6432/db?sslmode=re
 
 ---
 
-*Bài tiếp theo: Bài 2 — Create and manage schemas*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./postgresql-m1-bai2-schema.md)

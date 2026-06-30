@@ -143,4 +143,4 @@ Chart types: `timechart` · `barchart` · `piechart` · `columnchart` · `areach
 
 ---
 
-*Bài tiếp theo: Bài 2 — Explore logs for errors and performance*
+[← Assessment](./monitor-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./monitor-m2-bai2-errors-performance.md)

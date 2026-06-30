@@ -234,4 +234,4 @@ Label phải khớp với selector. Nếu không khớp → Deployment không bi
 
 ---
 
-*Bài tiếp theo: Bài 2 — Expose applications in Azure Kubernetes Service*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./aks-m1-bai2-expose-applications.md)

@@ -201,4 +201,4 @@ ru_charge = headers['x-ms-request-charge']
 
 ---
 
-*Bài tiếp theo: Bài 2 — Implement the Azure Cosmos DB for NoSQL SDK*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./cosmosdb-m1-bai2-sdk.md)

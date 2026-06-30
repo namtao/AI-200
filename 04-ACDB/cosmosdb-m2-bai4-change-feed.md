@@ -255,3 +255,7 @@ def process_document_change(doc, container, openai_client):
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./cosmosdb-m2-bai3-hybrid-search.md) · [🏠 Mục lục](../README.md) · [Assessment →](./cosmosdb-m2-module-assessment.md)

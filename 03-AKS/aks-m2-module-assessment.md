@@ -190,3 +190,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. AKS Learning Path tiếp theo: Module 3*
+
+---
+
+[← Bài 3](./aks-m2-bai3-persistent-storage.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./aks-m3-bai1-monitor-logs-metrics.md)

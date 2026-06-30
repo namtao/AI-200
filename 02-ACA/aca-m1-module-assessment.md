@@ -168,3 +168,7 @@ Quy trình đúng: **log trước** → nếu không đủ thông tin → mới 
 ---
 
 *Module hoàn thành. Learning Path ACA tiếp theo: Module 2*
+
+---
+
+[← Bài 5](./aca-m1-bai5-verify-deployments.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./aca-m2-bai1-update-images-revisions.md)

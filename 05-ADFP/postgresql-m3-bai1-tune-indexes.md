@@ -208,4 +208,4 @@ LIMIT 10;
 
 ---
 
-*Bài tiếp theo: Bài 2 — Choose and configure vector indexes**
+[← Assessment](./postgresql-m2-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./postgresql-m3-bai2-choose-indexes.md)

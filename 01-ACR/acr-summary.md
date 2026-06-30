@@ -333,3 +333,7 @@ az webapp log tail --resource-group rg --name app
 | 3 | API URL không swap khi swap slot | Đánh dấu là slot setting |
 | 4 | Health check fail dù app có `/healthz` | Path mismatch — sửa health check path thành `/healthz` |
 | 5 | Verify env var inject đúng | Kudu Environment page |
+
+---
+
+[← Assessment](./acr-m2-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

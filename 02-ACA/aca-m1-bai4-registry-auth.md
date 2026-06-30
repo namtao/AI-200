@@ -193,4 +193,4 @@ Sau khi cập nhật registry config, deploy revision mới và verify revision 
 
 ---
 
-*Bài tiếp theo: Bài 5 — Verify deployments with logs and status*
+[← Bài 3](./aca-m1-bai3-runtime-settings.md) · [🏠 Mục lục](../README.md) · [Bài 5 →](./aca-m1-bai5-verify-deployments.md)

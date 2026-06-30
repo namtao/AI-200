@@ -159,3 +159,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Learning Path tiếp theo: Deploy and manage apps on Azure Container Apps (ACA)*
+
+---
+
+[← Bài 4](./acr-m2-bai4-observe-troubleshoot.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./acr-summary.md)

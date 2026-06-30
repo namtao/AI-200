@@ -153,4 +153,4 @@ Azure quản lý Redis instance → một số commands bị blocked:
 
 ---
 
-*Bài tiếp theo: Bài 3 — Implement data operations*
+[← Bài 1](./redis-m1-bai1-explore-redis.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./redis-m1-bai3-data-operations.md)

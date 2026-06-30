@@ -172,4 +172,4 @@ az eventgrid topic create \
 
 ---
 
-*Bài tiếp theo: Bài 3 — Configure delivery and retry policies*
+[← Bài 1](./backend-m2-bai1-concepts.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./backend-m2-bai3-delivery-retry.md)

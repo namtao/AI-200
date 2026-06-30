@@ -139,4 +139,4 @@ Output xấu: `Seq Scan` → kiểm tra operator class match, index tồn tại,
 
 ---
 
-*Bài tiếp theo: Bài 3 — Manage index lifecycle + Semantic retrieval*
+[← Bài 1](./postgresql-m2-bai1-pgvector-basics.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./postgresql-m2-bai3-lifecycle-retrieval.md)

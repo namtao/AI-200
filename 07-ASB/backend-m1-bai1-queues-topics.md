@@ -141,4 +141,4 @@ admin_client.create_rule(
 
 ---
 
-*Bài tiếp theo: Bài 2 — Structure messages for AI workloads*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./backend-m1-bai2-message-structure.md)

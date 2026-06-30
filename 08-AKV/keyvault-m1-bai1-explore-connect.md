@@ -108,4 +108,4 @@ Khi vault bị soft-delete: RBAC assignments và Event Grid subscriptions cũng 
 
 ---
 
-*Bài tiếp theo: Bài 2 — Retrieve secrets using Azure SDK*
+[← Assessment](./appconfig-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./keyvault-m1-bai2-sdk.md)

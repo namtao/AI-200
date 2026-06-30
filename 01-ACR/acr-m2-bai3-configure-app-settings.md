@@ -358,4 +358,4 @@ Với Docker thuần, bạn inject config qua `docker run -e KEY=VALUE` hoặc `
 
 ---
 
-*Bài tiếp theo: Bài 4 — Observe and troubleshoot containerized apps*
+[← Bài 2](./acr-m2-bai2-configure-container-runtime.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./acr-m2-bai4-observe-troubleshoot.md)

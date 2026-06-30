@@ -185,3 +185,7 @@ redis_client.json().set("product:12345", "$", document)
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./redis-m3-bai2-vector-types-strategies.md) · [🏠 Mục lục](../README.md) · [Assessment →](./redis-m3-module-assessment.md)

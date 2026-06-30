@@ -163,4 +163,4 @@ Hierarchical với `:` delimiter → filter bằng `key_filter="OpenAI:*"` để
 
 ---
 
-*Bài tiếp theo: Bài 3 — Reference Key Vault secrets from App Configuration*
+[← Bài 1](./appconfig-m1-bai1-connect.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./appconfig-m1-bai3-keyvault-reference.md)

@@ -178,3 +178,7 @@ kubectl exec <new-pod-name> -- cat /app/data/test.txt
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./aks-m2-bai2-secrets.md) · [🏠 Mục lục](../README.md) · [Assessment →](./aks-m2-module-assessment.md)

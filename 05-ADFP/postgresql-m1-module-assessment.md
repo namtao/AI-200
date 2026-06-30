@@ -164,3 +164,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. PostgreSQL Learning Path tiếp theo: Module 2*
+
+---
+
+[← Bài 4](./postgresql-m1-bai4-sdk.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./postgresql-m2-bai1-pgvector-basics.md)

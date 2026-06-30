@@ -184,4 +184,4 @@ REINDEX INDEX CONCURRENTLY idx_products_embedding;
 
 ---
 
-*Bài tiếp theo: Bài 3 — Optimize data layout*
+[← Bài 1](./postgresql-m3-bai1-tune-indexes.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./postgresql-m3-bai3-data-layout.md)

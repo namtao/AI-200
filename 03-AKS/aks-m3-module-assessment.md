@@ -149,3 +149,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. AKS Learning Path kết thúc.*
+
+---
+
+[← Bài 3](./aks-m3-bai3-verify-connectivity.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./aks-summary.md)

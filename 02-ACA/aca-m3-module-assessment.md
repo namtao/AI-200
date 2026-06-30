@@ -157,3 +157,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Learning Path ACA — Scale containers in Azure Container Apps kết thúc.*
+
+---
+
+[← Bài 5](./aca-m3-bai5-revision-modes.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./aca-summary.md)

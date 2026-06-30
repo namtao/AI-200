@@ -161,4 +161,4 @@ embedding sparsevec(10000)
 
 ---
 
-*Bài tiếp theo: Bài 2 — Perform fast vector similarity search*
+[← Assessment](./postgresql-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./postgresql-m2-bai2-vector-indexes.md)

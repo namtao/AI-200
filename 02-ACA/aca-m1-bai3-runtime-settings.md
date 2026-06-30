@@ -254,4 +254,4 @@ az containerapp secret set -n ai-api -g rg-aca-demo \
 
 ---
 
-*Bài tiếp theo: Bài 4 — Configure image pull authentication for private registries*
+[← Bài 2](./aca-m1-bai2-deploy-container-app.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./aca-m1-bai4-registry-auth.md)

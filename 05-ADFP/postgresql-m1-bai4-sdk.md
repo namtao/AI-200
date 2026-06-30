@@ -269,3 +269,7 @@ def save_message(conversation_id: int, role: str, content: str) -> int:
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./postgresql-m1-bai3-query.md) · [🏠 Mục lục](../README.md) · [Assessment →](./postgresql-m1-module-assessment.md)

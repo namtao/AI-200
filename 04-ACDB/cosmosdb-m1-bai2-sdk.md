@@ -281,4 +281,4 @@ Log `activity_id` khi có lỗi — Azure support dùng để trace request cụ
 
 ---
 
-*Bài tiếp theo: Bài 3 — Query Azure Cosmos DB for NoSQL*
+[← Bài 1](./cosmosdb-m1-bai1-explore-nosql.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./cosmosdb-m1-bai3-query.md)

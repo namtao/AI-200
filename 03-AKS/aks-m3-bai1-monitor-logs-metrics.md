@@ -153,4 +153,4 @@ Log nên bao gồm:
 
 ---
 
-*Bài tiếp theo: Bài 2 — Troubleshoot Pods and Services*
+[← Assessment](./aks-m2-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./aks-m3-bai2-troubleshoot-pods-services.md)

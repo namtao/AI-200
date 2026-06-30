@@ -181,3 +181,7 @@ renewer.close()
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./backend-m1-bai2-message-structure.md) · [🏠 Mục lục](../README.md) · [Assessment →](./backend-m1-module-assessment.md)

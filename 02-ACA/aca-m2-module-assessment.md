@@ -161,3 +161,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Learning Path ACA tiếp theo: Module 3*
+
+---
+
+[← Bài 5](./aca-m2-bai5-optimize-resources-scaling.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./aca-m3-bai1-configure-scale-rules.md)

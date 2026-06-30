@@ -230,3 +230,7 @@ Strong  >  Bounded staleness  >  Session  >  Consistent prefix  >  Eventual
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./cosmosdb-m3-bai2-range-composite-indexes.md) · [🏠 Mục lục](../README.md) · [Assessment →](./cosmosdb-m3-module-assessment.md)

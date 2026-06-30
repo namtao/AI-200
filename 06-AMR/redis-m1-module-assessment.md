@@ -133,3 +133,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành.*
+
+---
+
+[← Bài 3](./redis-m1-bai3-data-operations.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./redis-m2-bai1-pubsub.md)

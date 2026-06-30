@@ -160,3 +160,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. PostgreSQL Learning Path tiếp theo: Module 3*
+
+---
+
+[← Bài 4](./postgresql-m2-bai4-rag-patterns.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./postgresql-m3-bai1-tune-indexes.md)

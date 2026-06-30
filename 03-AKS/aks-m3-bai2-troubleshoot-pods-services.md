@@ -179,4 +179,4 @@ kubectl get endpointslices -l kubernetes.io/service-name=<service-name> -n ai-wo
 
 ---
 
-*Bài tiếp theo: Bài 3 — Verify Service Connectivity and Endpoints*
+[← Bài 1](./aks-m3-bai1-monitor-logs-metrics.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./aks-m3-bai3-verify-connectivity.md)

@@ -443,4 +443,4 @@ Về **khái niệm** tag, ACR không thay đổi gì so với Docker — cơ ch
 
 ---
 
-*Bài tiếp theo: Exercise — Build and manage a container image with ACR Tasks*
+[← Bài 2](./acr-m1-bai2-acr-tasks.md) · [🏠 Mục lục](../README.md) · [Assessment →](./acr-m1-module-assessment.md)

@@ -177,3 +177,7 @@ Fix: update manifest → kubectl apply → verify
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./aks-m3-bai2-troubleshoot-pods-services.md) · [🏠 Mục lục](../README.md) · [Assessment →](./aks-m3-module-assessment.md)

@@ -137,3 +137,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành.*
+
+---
+
+[← Bài 4](./keyvault-m1-bai4-caching.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./summary.md)

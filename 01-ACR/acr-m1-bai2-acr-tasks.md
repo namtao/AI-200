@@ -563,4 +563,4 @@ Máy Linux đó luôn là cùng một loại môi trường. Kết quả nhất 
 
 ---
 
-*Bài tiếp theo: Tag and version images*
+[← Bài 1](./acr-m1-bai1-registries-repositories-artifacts.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./acr-m1-bai3-tag-and-version-images.md)

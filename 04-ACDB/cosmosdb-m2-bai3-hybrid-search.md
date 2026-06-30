@@ -230,4 +230,4 @@ Document match ở cả title lẫn content → rank cao nhất.
 
 ---
 
-*Bài tiếp theo: Bài 4 — Use the change feed to trigger embedding refresh*
+[← Bài 2](./cosmosdb-m2-bai2-vector-queries.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./cosmosdb-m2-bai4-change-feed.md)

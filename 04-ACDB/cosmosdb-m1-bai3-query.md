@@ -300,3 +300,7 @@ print(f"Query: {item_count} items, {total_rus:.2f} RUs")
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./cosmosdb-m1-bai2-sdk.md) · [🏠 Mục lục](../README.md) · [Assessment →](./cosmosdb-m1-module-assessment.md)

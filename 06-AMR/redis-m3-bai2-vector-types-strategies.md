@@ -129,4 +129,4 @@ Default ≈ 10 (speed). Increase đến 100-200 cho better recall.
 
 ---
 
-*Bài tiếp theo: Bài 3 — Optimize Redis data structures for vector storage*
+[← Bài 1](./redis-m3-bai1-index-query-vectors.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./redis-m3-bai3-data-structures.md)

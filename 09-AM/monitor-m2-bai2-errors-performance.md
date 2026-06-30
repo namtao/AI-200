@@ -128,4 +128,4 @@ dependencies
 
 ---
 
-*Bài tiếp theo: Bài 3 — Build dashboards + Create workbooks*
+[← Bài 1](./monitor-m2-bai1-kql-basics.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./monitor-m2-bai3-dashboards-workbooks.md)

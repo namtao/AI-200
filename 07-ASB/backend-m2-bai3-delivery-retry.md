@@ -160,4 +160,4 @@ az eventgrid event-subscription create \
 
 ---
 
-*Bài tiếp theo: Bài 4 — Publish custom events from AI applications*
+[← Bài 2](./backend-m2-bai2-schemas.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./backend-m2-bai4-publish-events.md)

@@ -146,4 +146,4 @@ Thấy kết quả → telemetry pipeline working end-to-end. Thấy requests t�
 
 ---
 
-*Bài tiếp theo: Bài 5 — Debug distributed flows with trace data*
+[← Bài 3](./monitor-m1-bai3-spans-traces.md) · [🏠 Mục lục](../README.md) · [Bài 5 →](./monitor-m1-bai5-debug-traces.md)

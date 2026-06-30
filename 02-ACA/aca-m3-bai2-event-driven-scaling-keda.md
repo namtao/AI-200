@@ -187,4 +187,4 @@ Cần: 2 msg/s × 10s/msg = 20 concurrent workers
 
 ---
 
-*Bài tiếp theo: Bài 3 — Apply KEDA scalers for custom workloads*
+[← Bài 1](./aca-m3-bai1-configure-scale-rules.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./aca-m3-bai3-keda-custom-workloads.md)

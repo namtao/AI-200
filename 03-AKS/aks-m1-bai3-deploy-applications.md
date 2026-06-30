@@ -274,3 +274,7 @@ kubectl describe pod <pod-name>
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./aks-m1-bai2-expose-applications.md) · [🏠 Mục lục](../README.md) · [Assessment →](./aks-m1-module-assessment.md)

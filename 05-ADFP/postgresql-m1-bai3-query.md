@@ -237,4 +237,4 @@ RETURNING id, (xmax = 0) AS is_new;
 
 ---
 
-*Bài tiếp theo: Bài 4 — Integrate SDKs and applications*
+[← Bài 2](./postgresql-m1-bai2-schema.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./postgresql-m1-bai4-sdk.md)

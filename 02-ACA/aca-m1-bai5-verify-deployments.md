@@ -268,4 +268,4 @@ az containerapp show -n ai-api -g rg-aca-demo \
 
 ---
 
-*Bài tiếp theo: Exercise — Deploy a containerized backend API to Container Apps*
+[← Bài 4](./aca-m1-bai4-registry-auth.md) · [🏠 Mục lục](../README.md) · [Assessment →](./aca-m1-module-assessment.md)

@@ -197,3 +197,7 @@ Deactivate v1
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 4](./aca-m3-bai4-compute-resources.md) · [🏠 Mục lục](../README.md) · [Assessment →](./aca-m3-module-assessment.md)

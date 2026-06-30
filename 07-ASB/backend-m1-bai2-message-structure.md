@@ -197,4 +197,4 @@ SDK manage batch size automatically. `MessageSizeExceededError` → send current
 
 ---
 
-*Bài tiếp theo: Bài 3 — Process messages reliably*
+[← Bài 1](./backend-m1-bai1-queues-topics.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./backend-m1-bai3-process-messages.md)

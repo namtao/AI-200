@@ -240,4 +240,4 @@ Dùng khi: search theo title similarity, content similarity, hoặc kết hợp 
 
 ---
 
-*Bài tiếp theo: Bài 2 — Execute vector similarity queries for semantic search*
+[← Assessment](./cosmosdb-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./cosmosdb-m2-bai2-vector-queries.md)

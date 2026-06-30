@@ -151,3 +151,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Learning Path kết thúc.*
+
+---
+
+[← Bài 4](./appconfig-m1-bai4-decide-storage.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./keyvault-m1-bai1-explore-connect.md)

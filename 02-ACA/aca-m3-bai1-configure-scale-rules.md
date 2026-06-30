@@ -209,4 +209,4 @@ rules:
 
 ---
 
-*Bài tiếp theo: Bài 2 — Implement event-driven scaling with KEDA*
+[← Assessment](./aca-m2-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./aca-m3-bai2-event-driven-scaling-keda.md)

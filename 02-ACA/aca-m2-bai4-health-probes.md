@@ -258,4 +258,4 @@ Nếu readiness pass sớm nhưng app chưa thực sự ready → health endpoin
 
 ---
 
-*Bài tiếp theo: Bài 5 — Optimize container resources and scaling*
+[← Bài 3](./aca-m2-bai3-monitor-logs.md) · [🏠 Mục lục](../README.md) · [Bài 5 →](./aca-m2-bai5-optimize-resources-scaling.md)

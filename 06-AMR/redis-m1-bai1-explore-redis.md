@@ -100,4 +100,4 @@ Lưu session data (shopping cart, user preferences, auth tokens, conversation co
 
 ---
 
-*Bài tiếp theo: Bài 2 — Client libraries and development best practices*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./redis-m1-bai2-client-libraries.md)

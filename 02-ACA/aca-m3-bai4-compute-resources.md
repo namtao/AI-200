@@ -185,4 +185,4 @@ Consumption plan có performance variability vì shared infrastructure. Nếu SL
 
 ---
 
-*Bài tiếp theo: Bài 5 — Choose and apply revision modes*
+[← Bài 3](./aca-m3-bai3-keda-custom-workloads.md) · [🏠 Mục lục](../README.md) · [Bài 5 →](./aca-m3-bai5-revision-modes.md)

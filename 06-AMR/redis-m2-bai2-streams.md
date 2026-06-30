@@ -197,4 +197,4 @@ def get_queue_stats():
 
 ---
 
-*Bài tiếp theo: Bài 3 — Choose between broadcast and coordinated distribution*
+[← Bài 1](./redis-m2-bai1-pubsub.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./redis-m2-bai3-broadcast-vs-distributed.md)

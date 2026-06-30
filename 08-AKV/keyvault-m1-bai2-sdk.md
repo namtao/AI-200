@@ -150,4 +150,4 @@ Dùng cho high-throughput async services (FastAPI, aiohttp). Create client **onc
 
 ---
 
-*Bài tiếp theo: Bài 3 — Handle secret versioning and rotation*
+[← Bài 1](./keyvault-m1-bai1-explore-connect.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./keyvault-m1-bai3-versioning-rotation.md)

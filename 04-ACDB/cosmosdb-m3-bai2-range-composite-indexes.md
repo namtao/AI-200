@@ -204,4 +204,4 @@ Mỗi index tăng write latency và RU. Guidelines:
 
 ---
 
-*Bài tiếp theo: Bài 3 — Tune vector indexes for embedding workloads*
+[← Bài 1](./cosmosdb-m3-bai1-indexes.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./cosmosdb-m3-bai3-vector-indexes-consistency.md)

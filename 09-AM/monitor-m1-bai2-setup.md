@@ -124,4 +124,4 @@ Không có unique names → tất cả services appear as 1 node → Application
 
 ---
 
-*Bài tiếp theo: Bài 3 — Configure spans and traces*
+[← Bài 1](./monitor-m1-bai1-otel-concepts.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./monitor-m1-bai3-spans-traces.md)

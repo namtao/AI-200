@@ -141,3 +141,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Learning Path kết thúc.*
+
+---
+
+[← Bài 5](./backend-m3-bai5-identity-access.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./backend-summary.md)

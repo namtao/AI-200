@@ -150,4 +150,4 @@ Kết quả: Waterfall chart trong App Insights. ProcessQuery → GenerateEmbedd
 
 ---
 
-*Bài tiếp theo: Bài 4 — Export telemetry to Azure Monitor*
+[← Bài 2](./monitor-m1-bai2-setup.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./monitor-m1-bai4-export.md)

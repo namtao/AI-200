@@ -195,4 +195,4 @@ Hầu hết DDL statements trong PostgreSQL là **transactional** — có thể 
 
 ---
 
-*Bài tiếp theo: Bài 3 — Query data*
+[← Bài 1](./postgresql-m1-bai1-explore-connect.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./postgresql-m1-bai3-query.md)

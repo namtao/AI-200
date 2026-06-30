@@ -204,3 +204,7 @@ def invalidate_user_cache(user_id):
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./redis-m1-bai2-client-libraries.md) · [🏠 Mục lục](../README.md) · [Assessment →](./redis-m1-module-assessment.md)

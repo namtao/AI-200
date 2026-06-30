@@ -189,4 +189,4 @@ ContainerAppConsoleLogs_CL
 
 ---
 
-*Bài tiếp theo: Bài 4 — Configure health probes and troubleshoot failures*
+[← Bài 2](./aca-m2-bai2-container-lifecycle.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./aca-m2-bai4-health-probes.md)

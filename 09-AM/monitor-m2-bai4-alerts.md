@@ -150,3 +150,7 @@ Machine learning detects unusual patterns **without manual thresholds**. Learns 
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./monitor-m2-bai3-dashboards-workbooks.md) · [🏠 Mục lục](../README.md) · [Assessment →](./monitor-m2-module-assessment.md)

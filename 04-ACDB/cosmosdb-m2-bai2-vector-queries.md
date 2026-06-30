@@ -213,4 +213,4 @@ query = """
 
 ---
 
-*Bài tiếp theo: Bài 3 — Combine vector similarity results with metadata filtering*
+[← Bài 1](./cosmosdb-m2-bai1-store-embeddings.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./cosmosdb-m2-bai3-hybrid-search.md)

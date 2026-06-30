@@ -160,3 +160,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành.*
+
+---
+
+[← Bài 5](./monitor-m1-bai5-debug-traces.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./monitor-m2-bai1-kql-basics.md)

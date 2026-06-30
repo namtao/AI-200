@@ -461,3 +461,7 @@ az aks scale --resource-group rg --name my-aks --node-count 3
 | 3 | Confirm Service selector match Pod labels | `kubectl describe service` |
 | 4 | Test AI endpoint từ local trước khi expose | `kubectl port-forward service/...` |
 | 5 | Fix CPU throttle gây latency tăng | Tăng CPU limit hoặc scale out replicas |
+
+---
+
+[← Assessment](./aks-m3-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

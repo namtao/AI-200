@@ -166,3 +166,7 @@ Call: `x-functions-key` header hoặc `code` query parameter.
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 4](./backend-m3-bai4-secrets-config.md) · [🏠 Mục lục](../README.md) · [Assessment →](./backend-m3-module-assessment.md)

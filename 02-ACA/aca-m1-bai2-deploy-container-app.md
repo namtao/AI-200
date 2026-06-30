@@ -261,4 +261,4 @@ az containerapp update --name ai-api --resource-group rg-aca-demo \
 
 ---
 
-*Bài tiếp theo: Bài 3 — Configure runtime settings with environment variables and secrets*
+[← Bài 1](./aca-m1-bai1-explore-environments.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./aca-m1-bai3-runtime-settings.md)

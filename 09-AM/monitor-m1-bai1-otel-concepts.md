@@ -100,4 +100,4 @@ traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
 
 ---
 
-*Bài tiếp theo: Bài 2 — Add the OpenTelemetry SDK to an application*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./monitor-m1-bai2-setup.md)

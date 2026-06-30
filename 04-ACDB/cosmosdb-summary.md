@@ -493,3 +493,7 @@ container = db.create_container_if_not_exists(
 | Change feed | CDC tools | ❌ | ✅ Built-in |
 | Single system | ❌ (need pgvector) | ❌ (need separate DB) | ✅ |
 | Operational complexity | Thấp | Cao (2 systems) | Thấp |
+
+---
+
+[← Assessment](./cosmosdb-m3-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

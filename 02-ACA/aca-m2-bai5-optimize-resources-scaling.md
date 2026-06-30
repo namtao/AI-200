@@ -209,4 +209,4 @@ Với dev/staging AI API không cần SLA → `minReplicas: 0` để tiết ki�
 
 ---
 
-*Bài tiếp theo: Exercise — Diagnose and fix a failing deployment*
+[← Bài 4](./aca-m2-bai4-health-probes.md) · [🏠 Mục lục](../README.md) · [Assessment →](./aca-m2-module-assessment.md)

@@ -151,4 +151,4 @@ func settings encrypt
 
 ---
 
-*Bài tiếp theo: Bài 3 — Create triggers and bindings for AI integration patterns*
+[← Bài 1](./backend-m3-bai1-hosting-scaling.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./backend-m3-bai3-triggers-bindings.md)

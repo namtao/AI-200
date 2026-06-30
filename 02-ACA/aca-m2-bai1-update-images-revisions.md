@@ -300,4 +300,4 @@ Với team deploy nhiều lần một ngày, inactive revision tích lũy nhanh.
 
 ---
 
-*Bài tiếp theo: Bài 2 — Manage the container app lifecycle*
+[← Assessment](./aca-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./aca-m2-bai2-container-lifecycle.md)

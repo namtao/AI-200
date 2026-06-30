@@ -448,3 +448,7 @@ az containerapp create ... \
 | GPU support | ❌ | ✅ Dedicated profile |
 | Kubernetes underneath | ❌ | ✅ (managed, bạn không thấy) |
 | Complexity | Thấp hơn | Cao hơn |
+
+---
+
+[← Assessment](./aca-m3-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

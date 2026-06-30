@@ -186,4 +186,4 @@ kubectl exec <pod-name> -- printenv | grep FEATURE
 
 ---
 
-*Bài tiếp theo: Bài 2 — Implement Secrets for Sensitive Data*
+[← Assessment](./aks-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./aks-m2-bai2-secrets.md)

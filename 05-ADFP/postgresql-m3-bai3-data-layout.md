@@ -165,4 +165,4 @@ Index trên parent → auto-create trên tất cả partitions. Mỗi partition 
 
 ---
 
-*Bài tiếp theo: Bài 4 — Scale for high-volume workloads + Connection optimization*
+[← Bài 2](./postgresql-m3-bai2-choose-indexes.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./postgresql-m3-bai4-scale-connections.md)

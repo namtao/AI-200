@@ -216,3 +216,7 @@ HNSW handles deletions gracefully. IVFFlat có thể cần rebuild sau significa
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 3](./postgresql-m2-bai3-lifecycle-retrieval.md) · [🏠 Mục lục](../README.md) · [Assessment →](./postgresql-m2-module-assessment.md)

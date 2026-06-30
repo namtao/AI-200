@@ -317,3 +317,7 @@ App managed identity cần `Key Vault Secrets User` để đọc secrets. `Key V
 ---
 
 *File tổng hợp — AI-200 Module 08-AKV*
+
+---
+
+[← Assessment](./keyvault-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Mục lục →](../README.md)

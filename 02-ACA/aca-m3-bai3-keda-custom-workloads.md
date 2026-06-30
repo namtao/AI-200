@@ -172,4 +172,4 @@ Khi migrate từ Kubernetes + KEDA hoặc adapt từ KEDA documentation:
 
 ---
 
-*Bài tiếp theo: Bài 4 — Select compute resources for performance and cost*
+[← Bài 2](./aca-m3-bai2-event-driven-scaling-keda.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./aca-m3-bai4-compute-resources.md)

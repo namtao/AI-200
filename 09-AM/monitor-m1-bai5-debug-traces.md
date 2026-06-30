@@ -124,3 +124,7 @@ dependencies
 ---
 
 *Module hoàn thành.*
+
+---
+
+[← Bài 4](./monitor-m1-bai4-export.md) · [🏠 Mục lục](../README.md) · [Assessment →](./monitor-m1-module-assessment.md)

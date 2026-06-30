@@ -157,3 +157,7 @@ async def event_listener_service():
 ---
 
 *Module Assessment tiếp theo*
+
+---
+
+[← Bài 2](./redis-m2-bai2-streams.md) · [🏠 Mục lục](../README.md) · [Assessment →](./redis-m2-module-assessment.md)

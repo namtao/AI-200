@@ -179,3 +179,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Cosmos DB Learning Path kết thúc.*
+
+---
+
+[← Bài 3](./cosmosdb-m3-bai3-vector-indexes-consistency.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./cosmosdb-summary.md)

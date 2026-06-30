@@ -198,4 +198,4 @@ query = Query("*=>[KNN 10 @embedding $query_vec EF_RUNTIME 200 AS score]")
 
 ---
 
-*Bài tiếp theo: Bài 2 — Choose vector types and indexing strategies*
+[← Assessment](./redis-m2-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./redis-m3-bai2-vector-types-strategies.md)

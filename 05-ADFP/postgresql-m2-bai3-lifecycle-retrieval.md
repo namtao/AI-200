@@ -236,4 +236,4 @@ ALTER TABLE documents SET (
 
 ---
 
-*Bài tiếp theo: Bài 4 — RAG Retrieval Patterns*
+[← Bài 2](./postgresql-m2-bai2-vector-indexes.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./postgresql-m2-bai4-rag-patterns.md)

@@ -180,4 +180,4 @@ def analyze_document(msg: func.ServiceBusMessage) -> None:
 
 ---
 
-*Bài tiếp theo: Bài 4 — Manage secrets and configuration*
+[← Bài 2](./backend-m3-bai2-local-dev.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./backend-m3-bai4-secrets-config.md)

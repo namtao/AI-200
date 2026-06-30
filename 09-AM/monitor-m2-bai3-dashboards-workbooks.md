@@ -143,4 +143,4 @@ Multi-select dropdown → `| where cloud_RoleName in ({ServiceName})`
 
 ---
 
-*Bài tiếp theo: Bài 4 — Set alerts for app failures and anomalies*
+[← Bài 2](./monitor-m2-bai2-errors-performance.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./monitor-m2-bai4-alerts.md)

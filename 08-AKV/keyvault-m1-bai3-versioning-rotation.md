@@ -145,4 +145,4 @@ Expired secrets **vẫn accessible** qua `get_secret()` — expiration là **inf
 
 ---
 
-*Bài tiếp theo: Bài 4 — Implement caching strategies*
+[← Bài 2](./keyvault-m1-bai2-sdk.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./keyvault-m1-bai4-caching.md)

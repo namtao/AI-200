@@ -157,4 +157,4 @@ batch_size = config["Pipeline:BatchSize"]    # Fresh value sau refresh
 
 ---
 
-*Bài tiếp theo: Bài 2 — Organize settings with labels and feature flags*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./appconfig-m1-bai2-labels-feature-flags.md)

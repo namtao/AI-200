@@ -142,3 +142,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Redis Learning Path kết thúc.*
+
+---
+
+[← Bài 3](./redis-m3-bai3-data-structures.md) · [🏠 Mục lục](../README.md) · [Tổng hợp →](./redis-summary.md)

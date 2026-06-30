@@ -159,3 +159,7 @@ Tại sao các đáp án còn lại sai:
 ---
 
 *Module hoàn thành. Cosmos DB Learning Path tiếp theo: Module 2*
+
+---
+
+[← Bài 3](./cosmosdb-m1-bai3-query.md) · [🏠 Mục lục](../README.md) · [Bài 1 →](./cosmosdb-m2-bai1-store-embeddings.md)

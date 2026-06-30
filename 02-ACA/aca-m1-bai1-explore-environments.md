@@ -240,4 +240,4 @@ App Service Plan chỉ là **compute tier** (CPU/RAM). ACA Environment là thứ
 
 ---
 
-*Bài tiếp theo: Bài 2 — Deploy a container app*
+[← Mục lục](../README.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./aca-m1-bai2-deploy-container-app.md)

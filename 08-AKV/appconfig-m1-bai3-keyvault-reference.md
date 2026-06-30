@@ -133,4 +133,4 @@ Alignment với rotation schedule. Mỗi KV reference = 1 request đến Key Vau
 
 ---
 
-*Bài tiếp theo: Bài 4 — Decide what to store in App Configuration vs Key Vault*
+[← Bài 2](./appconfig-m1-bai2-labels-feature-flags.md) · [🏠 Mục lục](../README.md) · [Bài 4 →](./appconfig-m1-bai4-decide-storage.md)

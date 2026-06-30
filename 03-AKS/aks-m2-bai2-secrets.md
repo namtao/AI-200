@@ -157,4 +157,4 @@ App Configuration Kubernetes Provider đọc Key Vault references từ App Confi
 
 ---
 
-*Bài tiếp theo: Bài 3 — Attach Persistent Storage to an App*
+[← Bài 1](./aks-m2-bai1-configmaps.md) · [🏠 Mục lục](../README.md) · [Bài 3 →](./aks-m2-bai3-persistent-storage.md)

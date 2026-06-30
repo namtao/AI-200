@@ -145,4 +145,4 @@ async def redis_listener(websocket: WebSocket):
 
 ---
 
-*Bài tiếp theo: Bài 2 — Implement task queues with Redis Streams*
+[← Assessment](./redis-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./redis-m2-bai2-streams.md)

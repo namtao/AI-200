@@ -108,4 +108,4 @@ Destinations nhận events:
 
 ---
 
-*Bài tiếp theo: Bài 2 — Work with event schemas and properties*
+[← Assessment](./backend-m1-module-assessment.md) · [🏠 Mục lục](../README.md) · [Bài 2 →](./backend-m2-bai2-schemas.md)
